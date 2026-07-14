@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مزمز | طعم الصيف الحقيقي</title>
+<meta name="description" content="مزمز — بطيخ أحمر وأصفر أردني وشمام وتين، طازج ومختار بعناية، يصل إلى بابك بجودة مضمونة.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><circle cx=%2232%22 cy=%2232%22 r=%2230%22 fill=%22%23c81f3f%22/><circle cx=%2232%22 cy=%2232%22 r=%2222%22 fill=%22%23fff%22/><circle cx=%2232%22 cy=%2232%22 r=%2216%22 fill=%22%23e8384f%22/></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">
+      <svg class="mark" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="30" fill="#c81f3f"/>
+        <circle cx="32" cy="32" r="22" fill="#fff"/>
+        <circle cx="32" cy="32" r="15" fill="#e8384f"/>
+        <circle cx="27" cy="27" r="1.7" fill="#2b0d12"/>
+        <circle cx="37" cy="30" r="1.7" fill="#2b0d12"/>
+        <circle cx="30" cy="38" r="1.7" fill="#2b0d12"/>
+      </svg>
+      مزمز
+    </a>
+
+    <nav class="nav-links" aria-label="التنقل الرئيسي">
+      <a href="index.html" class="active">الرئيسية</a>
+      <a href="index.html#products">المنتجات</a>
+      <a href="about.html">من نحن</a>
+      <a href="contact.html">تواصل معنا</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn js-open-cart" aria-label="فتح سلة المشتريات">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h2l2.6 12.6a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.5L21 8H6"/></svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+      <button class="nav-burger" id="navBurger" aria-label="فتح القائمة" aria-expanded="false">
+        <span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">الرئيسية</a>
+    <a href="index.html#products">المنتجات</a>
+    <a href="about.html">من نحن</a>
+    <a href="contact.html">تواصل معنا</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div>
+      <span class="hero-eyebrow">
+        <svg class="dot" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#c81f3f"/><circle cx="12" cy="12" r="6" fill="#fff"/><circle cx="12" cy="12" r="3" fill="#e8384f"/></svg>
+        موسم القطاف بدأ الآن
+      </span>
+      <h1>طعم الصيف <em>الحقيقي</em></h1>
+      <p class="hero-sub">بطيخ أحمر وأصفر أردني، وشمام وتين — يُقطف في أوجه نضجه، يُغسل ويُفرز بعناية، ويصلك في نفس يوم الطلب. هذا هو وعد مزمز.</p>
+      <div class="hero-cta">
+        <a href="#products" class="btn btn-accent">تسوّق المنتجات</a>
+        <a href="about.html" class="btn btn-ghost">تعرّف على قصتنا</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><b>+15</b><span>سنة خبرة في الأرض</span></div>
+        <div class="hero-stat"><b>100%</b><span>فرز يدوي دقيق</span></div>
+        <div class="hero-stat"><b>24 س</b><span>من القطف إلى بابك</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="halo"></div>
+      <svg viewBox="0 0 200 200" fill="none">
+        <path d="M100 6C150 6 186 60 186 100C186 108 100 6 100 6Z" fill="#1f7a4d"/>
+        <path d="M14 100C14 60 50 6 100 6C100 6 14 108 14 100Z" fill="#2f9860"/>
+        <circle cx="100" cy="100" r="94" fill="#1f7a4d"/>
+        <circle cx="100" cy="100" r="80" fill="#e8f4e3"/>
+        <circle cx="100" cy="100" r="68" fill="#c81f3f"/>
+        <g fill="#2b0d12">
+          <circle cx="78" cy="76" r="4.6"/>
+          <circle cx="122" cy="82" r="4.6"/>
+          <circle cx="70" cy="108" r="4.6"/>
+          <circle cx="130" cy="112" r="4.6"/>
+          <circle cx="96" cy="130" r="4.6"/>
+          <circle cx="112" cy="60" r="4.6"/>
+          <circle cx="98" cy="98" r="4.6"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="rind-strip" aria-hidden="true"></div>
+
+<!-- ============ ABOUT TEASER ============ -->
+<section class="section">
+  <div class="container about-teaser">
+    <div class="reveal">
+      <span class="eyebrow"><span class="seed-dot"></span>لماذا مزمز</span>
+      <h2 style="font-size:clamp(26px,3.6vw,36px); margin-bottom:16px;">من الحقل إلى مائدتك، دون وسيط ودون تنازل عن الجودة</h2>
+      <p style="color:var(--text-soft); font-size:16px; line-height:1.85;">
+        نختار أرضًا وموسمًا وصنفًا بعناية، ونحصد كل ثمرة في لحظة نضجها المثالية. لا تبريد طويل، ولا تخزين مطوّل — فقط طزاجة تصل إليك كما هي.
+      </p>
+      <div class="pill-badges">
+        <span class="pill-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1f7a4d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          طازج يوميًا
+        </span>
+        <span class="pill-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c81f3f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 9.3 8 10 4.6-.7 8-5 8-10V6l-8-4Z"/></svg>
+          نظيف ومفروز يدويًا
+        </span>
+        <span class="pill-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#dd9a00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+          مختار بعناية
+        </span>
+      </div>
+      <a href="about.html" class="btn btn-primary mt-lg" style="margin-top:32px;">اقرأ قصتنا كاملة</a>
+    </div>
+
+    <div class="about-visual reveal">
+      <svg viewBox="0 0 220 180" fill="none">
+        <path d="M110 12C170 20 206 74 206 110C160 150 60 150 14 110C14 74 50 20 110 12Z" fill="#1f7a4d"/>
+        <path d="M110 12C150 26 176 66 178 108C132 138 88 138 42 108C44 66 70 26 110 12Z" fill="#e8f4e3"/>
+        <path d="M110 30C138 42 156 72 158 104C126 126 94 126 62 104C64 72 82 42 110 30Z" fill="#c81f3f"/>
+        <g fill="#2b0d12">
+          <circle cx="90" cy="72" r="4"/><circle cx="128" cy="76" r="4"/>
+          <circle cx="82" cy="98" r="4"/><circle cx="134" cy="100" r="4"/>
+          <circle cx="108" cy="112" r="4"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCTS ============ -->
+<section class="section section-alt" id="products">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;"><span class="seed-dot"></span>منتجاتنا</span>
+      <h2>ثلاث ثمار، معيار واحد للجودة</h2>
+      <p>كل صنف من إنتاج مزمز و وتين يمرّ بفرز دقيق قبل أن يصل إليك.</p>
+    </div>
+
+    <div class="product-grid">
+
+      <!-- بطيخ أحمر -->
+      <article class="product-card reveal">
+        <div class="product-media red">
+          <span class="product-tag red">مزمز</span>
+          <svg viewBox="0 0 160 160" fill="none">
+            <circle cx="80" cy="80" r="70" fill="#c81f3f"/>
+            <circle cx="80" cy="80" r="54" fill="#fff5f6"/>
+            <circle cx="80" cy="80" r="38" fill="#e8384f"/>
+            <g fill="#2b0d12">
+              <circle cx="66" cy="66" r="3.4"/><circle cx="96" cy="72" r="3.4"/>
+              <circle cx="62" cy="90" r="3.4"/><circle cx="100" cy="94" r="3.4"/>
+              <circle cx="80" cy="106" r="3.4"/>
+            </g>
+          </svg>
+        </div>
+        <h3>بطيخ أحمر أردني</h3>
+        <p class="desc">حلاوة عالية وقشرة رفيعة، من مزارع الأغوار الأردنية. مثالي لأيام الصيف الحارة وعصائر منعشة.</p>
+        <div class="product-foot">
+          <span class="price">3.50 <span>د.أ / كغ</span></span>
+          <button class="add-btn" data-id="red-watermelon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+            أضف إلى السلة
+          </button>
+        </div>
+      </article>
+
+      <!-- بطيخ أصفر -->
+      <article class="product-card reveal">
+        <div class="product-media yellow">
+          <span class="product-tag yellow">مزمز</span>
+          <svg viewBox="0 0 160 160" fill="none">
+            <circle cx="80" cy="80" r="70" fill="#dd9a00"/>
+            <circle cx="80" cy="80" r="54" fill="#fff8e6"/>
+            <circle cx="80" cy="80" r="38" fill="#f5c343"/>
+            <g fill="#5c3d00">
+              <circle cx="66" cy="66" r="3.4"/><circle cx="96" cy="72" r="3.4"/>
+              <circle cx="62" cy="90" r="3.4"/><circle cx="100" cy="94" r="3.4"/>
+              <circle cx="80" cy="106" r="3.4"/>
+            </g>
+          </svg>
+        </div>
+        <h3>بطيخ أصفر</h3>
+        <p class="desc">نكهة أكثر عمقًا وحلاوة عسلية مميزة، ولون داخلي أصفر ذهبي يبهر ضيوفك على السفرة.</p>
+        <div class="product-foot">
+          <span class="price">4.00 <span>د.أ / كغ</span></span>
+          <button class="add-btn" data-id="yellow-watermelon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+            أضف إلى السلة
+          </button>
+        </div>
+      </article>
+
+      <!-- شمام -->
+      <article class="product-card reveal">
+        <div class="product-media cantaloupe">
+          <span class="product-tag cantaloupe">وتين</span>
+          <svg viewBox="0 0 160 160" fill="none">
+            <circle cx="80" cy="80" r="70" fill="#d67c26"/>
+            <path d="M20 60c20-6 24 30 10 46M32 34c20 0 20 40 4 54M50 18c20 6 14 46-2 60M80 12c20 4 8 50-6 64M108 18c16 10 4 50-10 62M126 34c16 16-4 48-20 60M140 60c10 20-16 46-30 50" stroke="#b3651a" stroke-width="3.4" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <h3>شمام أردني</h3>
+        <p class="desc">رائحة عطرية غنية وقوام طري حلو المذاق، يُقطف يدويًا في ذروة نضجه من مزارع وتين.</p>
+        <div class="product-foot">
+          <span class="price">2.75 <span>د.أ / كغ</span></span>
+          <button class="add-btn" data-id="shamam">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+            أضف إلى السلة
+          </button>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="seed-dot"></span>معايير مزمز</span>
+      <h2>ثلاثة معايير لا نتنازل عنها</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon i-red">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.4 9.3 8 10 4.6-.7 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h3>جودة مضمونة</h3>
+        <p>كل ثمرة تمرّ بفحص وزن ونضج قبل التعبئة، ونستبدل أي طلب لا يرقى إلى معاييرنا فورًا.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon i-green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5-4 8-8.5 8-13a8 8 0 1 0-16 0c0 4.5 3 9 8 13Z"/><circle cx="12" cy="9" r="2.6"/></svg>
+        </div>
+        <h3>منتجات طازجة</h3>
+        <p>نقطف عند الطلب أو في نفس الصباح، دون تخزين مبرد طويل يفقد الثمار نكهتها الطبيعية.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon i-gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg>
+        </div>
+        <h3>توصيل سريع</h3>
+        <p>توصيل في نفس اليوم داخل عمّان الكبرى، وتغليف مبرّد يحافظ على الطزاجة حتى باب بيتك.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;"><span class="seed-dot"></span>آراء العملاء</span>
+      <h2>ثقة عملائنا هي معيارنا الحقيقي</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="stars">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+        </div>
+        <p class="testi-quote">"البطيخ الأحمر من مزمز فعلاً بطعم مختلف، حلو جدًا وطازج، ووصل نفس يوم الطلب."</p>
+        <div class="testi-person">
+          <div class="avatar" style="background:#c81f3f;">س.ح</div>
+          <div><b>سارة الحوراني</b><span>عمّان</span></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+        </div>
+        <p class="testi-quote">"الشمام من وتين برائحته العطرية وحلاوته صار طلب أساسي عندي كل أسبوع."</p>
+        <div class="testi-person">
+          <div class="avatar" style="background:#d67c26;">م.ع</div>
+          <div><b>محمد العزام</b><span>الزرقاء</span></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor" opacity=".35"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+        </div>
+        <p class="testi-quote">"جربت البطيخ الأصفر لأول مرة من مزمز، حلاوته عسلية وشكله يلفت الأنظار على السفرة."</p>
+        <div class="testi-person">
+          <div class="avatar" style="background:#dd9a00;">ر.ن</div>
+          <div><b>رنا النمر</b><span>إربد</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="section">
+  <div class="container">
+    <div class="cta-band reveal">
+      <div>
+        <h2>جاهز لتجربة طعم الصيف الحقيقي؟</h2>
+        <p>اطلب الآن واستلم ثمارك الطازجة في نفس اليوم.</p>
+      </div>
+      <a href="#products" class="btn btn-primary">تسوّق الآن</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <svg class="mark" viewBox="0 0 64 64" fill="none">
+            <circle cx="32" cy="32" r="30" fill="#c81f3f"/>
+            <circle cx="32" cy="32" r="22" fill="#fff"/>
+            <circle cx="32" cy="32" r="15" fill="#e8384f"/>
+          </svg>
+          مزمز
+        </a>
+        <p>بطيخ أحمر وأصفر أردني، وشمام وتين. طازج، نظيف، ومختار بعناية ليصل إليك بأعلى جودة.</p>
+      </div>
+      <div class="footer-col">
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a href="index.html">الرئيسية</a></li>
+          <li><a href="index.html#products">المنتجات</a></li>
+          <li><a href="about.html">من نحن</a></li>
+          <li><a href="contact.html">تواصل معنا</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>تواصل</h4>
+        <ul>
+          <li><a href="tel:+962790000000">079 000 0000</a></li>
+          <li><a href="mailto:hello@mazamiz.jo">hello@mazamiz.jo</a></li>
+          <li><a href="contact.html">عمّان، الأردن</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>فريق المبيعات</h4>
+        <div class="sales-team">
+          <span class="sales-chip"><span class="dot" style="background:#c81f3f;">ي</span>يونس</span>
+          <span class="sales-chip"><span class="dot" style="background:#1f7a4d;">أ</span>أحمد</span>
+          <span class="sales-chip"><span class="dot" style="background:#dd9a00;">س</span>السبعاوي شربوش</span>
+          <span class="sales-chip"><span class="dot" style="background:#d67c26;">م</span>العم معين</span>
+          <span class="sales-chip"><span class="dot" style="background:#8a6bd1;">ح</span>حمزاوي</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 مزمز. جميع الحقوق محفوظة.</span>
+      <div class="socials">
+        <a href="#" aria-label="انستغرام"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" aria-label="واتساب"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21l1.6-4.8A8 8 0 1 1 8.8 19.4L3 21Z"/></svg></a>
+        <a href="#" aria-label="فيسبوك"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 8h2V4h-2a4 4 0 0 0-4 4v2H9v4h2v6h4v-6h2.5L18 10h-3V9a1 1 0 0 1 1-1Z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ CART DRAWER ============ -->
+<div class="overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="سلة المشتريات">
+  <div class="cart-head">
+    <h3>سلة المشتريات (<span id="cartCountLabel">0</span>)</h3>
+    <button class="icon-btn js-close-cart" aria-label="إغلاق السلة">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-total">
+      <span>الإجمالي</span>
+      <b id="cartTotalValue">0.00 د.أ</b>
+    </div>
+    <button class="btn btn-accent btn-block" id="checkoutBtn">إتمام الشراء</button>
+    <p class="form-note text-center" style="margin-top:10px;">هذه سلة تجريبية لأغراض العرض فقط.</p>
+  </div>
+</aside>
+
+<script src="js/main.js"></script>
+</body>
+</html>
