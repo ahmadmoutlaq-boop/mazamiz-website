@@ -5,7 +5,7 @@
 /* -------- Product catalogue (shared source of truth) -------- */
 const PRODUCTS = {
   'red-watermelon': {
-    name: 'بطيخ أحمر أردني',
+    name: 'بطيخ أحمر كويتي',
     brand: 'مزمز',
     price: 3.50,
     unit: 'للكيلوغرام',
@@ -21,7 +21,7 @@ const PRODUCTS = {
     thumb: 'yellow'
   },
   'shamam': {
-    name: 'شمام أردني',
+    name: 'شمام كويتي',
     brand: 'وتين',
     price: 2.75,
     unit: 'للكيلوغرام',
@@ -41,7 +41,7 @@ const THUMBS = {
 let cart = {}; // { productId: qty }
 
 /* -------- Helpers -------- */
-const fmt = (n) => n.toLocaleString('ar-JO', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const fmt = (n) => n.toLocaleString('ar-KW', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const $ = (sel, ctx=document) => ctx.querySelector(sel);
 const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
 
@@ -176,7 +176,7 @@ function renderCart(){
         <div class="thumb product-media ${p.thumb}" style="border-radius:14px; aspect-ratio:auto;">${THUMBS[p.thumb]}</div>
         <div class="info">
           <b>${p.name} <small style="color:var(--text-faint); font-weight:500;">— ${p.brand}</small></b>
-          <span>${fmt(p.price)} د.أ ${p.unit}</span>
+          <span>${fmt(p.price)} د.ك ${p.unit}</span>
           <div class="qty-control">
             <button class="js-dec" aria-label="إنقاص الكمية">−</button>
             <span>${qty}</span>
@@ -203,7 +203,7 @@ function renderCart(){
     });
   }
 
-  if(totalEl) totalEl.textContent = `${fmt(cartTotal())} د.أ`;
+  if(totalEl) totalEl.textContent = `${fmt(cartTotal())} د.ك`;
 }
 
 /* -------- Contact form (demo only, no backend) -------- */
