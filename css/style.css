@@ -1251,3 +1251,255 @@ ul{ margin:0; padding:0; list-style:none; }
   .whatsapp-fab{ bottom:18px; inset-inline-start:18px; padding:14px; }
   .whatsapp-fab span{ display:none; }
 }
+
+/* =========================================================
+   Animated Statistics section (قسم الإحصائيات المتحركة)
+   -----------------------------------------------------------
+   A row of 4 stat cards (years of experience, happy customers,
+   delivered orders, average rating). The NUMBERS themselves are
+   plain text in the HTML (e.g. "1200") — JavaScript animates
+   them counting up from 0 only once, the first time the section
+   scrolls into view (see initStatsCounter() in js/main.js).
+   This block only handles the visual styling of the section;
+   it has no effect on the counting logic itself.
+   ========================================================= */
+.stats-section{
+  padding:80px 0;
+}
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+.stat-card{
+  text-align:center;
+  padding:36px 20px;
+  border-radius:var(--r-lg);
+  background:#fff;
+  border:1px solid var(--line);
+  transition:transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.stat-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-md);
+}
+.stat-icon{
+  font-size:32px;
+  margin-bottom:12px;
+  line-height:1;
+}
+/* The counted number + its suffix (+ or a decimal like 4.9) sit
+   side by side so the animation only touches the digits, never
+   the static suffix character. */
+.stat-number{
+  display:flex;
+  align-items:baseline;
+  justify-content:center;
+  gap:2px;
+  font-family:'Cairo',sans-serif;
+  font-weight:900;
+  font-size:clamp(28px,4vw,38px);
+  color:var(--red);
+}
+.stat-card:nth-child(2) .stat-number{ color:var(--green); }
+.stat-card:nth-child(3) .stat-number{ color:var(--gold-deep); }
+.stat-card:nth-child(4) .stat-number{ color:var(--cantaloupe-deep); }
+.stat-label{
+  margin-top:8px;
+  font-size:14px;
+  color:var(--text-soft);
+  font-weight:600;
+}
+
+@media (max-width:1024px) and (min-width:641px){
+  .stats-grid{ grid-template-columns:repeat(2,1fr); gap:20px 16px; }
+}
+@media (max-width:640px){
+  .stats-grid{ grid-template-columns:repeat(2,1fr); gap:16px; }
+  .stat-card{ padding:26px 14px; }
+}
+
+/* =========================================================
+   Lucky Wheel (عجلة الحظ) — entertainment only
+   -----------------------------------------------------------
+   Structure:
+   - .luck-trigger      → the "🎁 جرّب حظك" button that opens the modal
+   - .luck-overlay       → dark backdrop (reuses the same pattern as
+                           the cart's .overlay, but scoped separately
+                           so opening the wheel never affects the cart)
+   - .luck-modal         → centered card holding the wheel
+   - .wheel-wrap/.wheel  → the spinning circle itself. The 6 colored
+                           sectors are drawn with a single CSS
+                           conic-gradient (no images, so it stays
+                           fast and crisp at any screen size).
+   - .wheel-pointer      → fixed triangle marking the "winning" slice
+   - .wheel-result       → revealed after the spin finishes, with a
+                           small pop/scale-in animation
+   All spinning math (which prize, how many degrees) lives in
+   js/main.js → initLuckyWheel(). This CSS only defines the *look*
+   and the transition curve used for the spin itself.
+   ========================================================= */
+.luck-trigger{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:36px;
+  padding:14px 28px;
+  border-radius:999px;
+  border:none;
+  background:linear-gradient(135deg, var(--red), var(--cantaloupe));
+  color:#fff;
+  font-size:15px;
+  font-weight:800;
+  box-shadow:0 12px 26px rgba(200,31,63,.28);
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.luck-trigger:hover{
+  transform:translateY(-3px) scale(1.02);
+  box-shadow:0 18px 34px rgba(200,31,63,.36);
+}
+
+.luck-overlay{
+  position:fixed; inset:0;
+  background:rgba(15,15,14,.55);
+  backdrop-filter:blur(3px);
+  z-index:800;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .35s var(--ease-soft);
+}
+.luck-overlay.open{ opacity:1; pointer-events:auto; }
+
+.luck-modal{
+  position:fixed;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%) scale(.9);
+  width:min(380px, 92vw);
+  background:#fff;
+  border-radius:var(--r-xl);
+  padding:32px 24px 28px;
+  z-index:810;
+  text-align:center;
+  box-shadow:var(--shadow-lg);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .35s var(--ease), transform .35s var(--ease);
+}
+.luck-modal.open{
+  opacity:1;
+  pointer-events:auto;
+  transform:translate(-50%,-50%) scale(1);
+}
+.luck-modal .luck-close{
+  position:absolute;
+  top:14px; inset-inline-end:14px;
+  width:34px; height:34px;
+  border-radius:50%;
+  border:1px solid var(--line);
+  background:#fff;
+  display:flex; align-items:center; justify-content:center;
+}
+.luck-modal h3{
+  font-size:20px;
+  margin-bottom:6px;
+}
+.luck-modal p.luck-sub{
+  color:var(--text-soft);
+  font-size:13.5px;
+  margin-bottom:24px;
+}
+
+.wheel-wrap{
+  position:relative;
+  width:240px; height:240px;
+  margin:0 auto 26px;
+}
+/* 6 equal 60° sectors, colored with the site's own palette so the
+   wheel still feels like part of the مزمز brand rather than a
+   generic "spin to win" widget. */
+.wheel{
+  width:100%; height:100%;
+  border-radius:50%;
+  background:conic-gradient(
+    var(--red) 0deg 60deg,
+    var(--green) 60deg 120deg,
+    var(--gold) 120deg 180deg,
+    var(--cantaloupe) 180deg 240deg,
+    var(--red-deep) 240deg 300deg,
+    #1a5c3a 300deg 360deg
+  );
+  box-shadow:0 0 0 8px #fff, 0 0 0 10px var(--line), var(--shadow-lg);
+  position:relative;
+  /* transform/transition are set inline by JS at spin time so the
+     exact rotation angle can differ every time; the timing
+     function below is what gives the "fast start, slow stop" feel */
+  transition:transform 4.5s cubic-bezier(.15,.75,.2,1);
+}
+.wheel-segment-label{
+  position:absolute;
+  top:50%; left:50%;
+  width:100px;
+  margin-top:-8px;
+  transform-origin:0 8px;
+  font-size:10.5px;
+  font-weight:800;
+  color:#fff;
+  text-shadow:0 1px 2px rgba(0,0,0,.25);
+  text-align:center;
+  pointer-events:none;
+}
+.wheel-pointer{
+  position:absolute;
+  top:-6px; left:50%;
+  transform:translateX(-50%);
+  width:0; height:0;
+  border-left:12px solid transparent;
+  border-right:12px solid transparent;
+  border-top:20px solid var(--text);
+  z-index:5;
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.25));
+}
+.wheel-center-btn{
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:56px; height:56px;
+  border-radius:50%;
+  background:#fff;
+  border:none;
+  box-shadow:var(--shadow-sm);
+  font-size:20px;
+  display:flex; align-items:center; justify-content:center;
+  transition:transform .25s var(--ease-soft);
+}
+.wheel-center-btn:hover{ transform:translate(-50%,-50%) scale(1.08); }
+.wheel-center-btn:disabled{ opacity:.6; cursor:default; }
+
+/* Result card — hidden until the spin animation finishes, then
+   pops in with a short scale/opacity animation (badgePop is the
+   same keyframe already used for the "bestseller" product badge,
+   reused here for visual consistency rather than defining a
+   near-identical second animation). */
+.luck-result{
+  margin-top:6px;
+  padding:16px;
+  border-radius:var(--r-md);
+  background:var(--bg-alt);
+  display:none;
+}
+.luck-result.show{
+  display:block;
+  animation:badgePop .5s var(--ease) both;
+}
+.luck-result .prize{
+  font-family:'Cairo',sans-serif;
+  font-weight:800;
+  font-size:19px;
+  color:var(--red);
+  margin-bottom:4px;
+}
+.luck-result p{ font-size:12.5px; color:var(--text-soft); }
+
+@media (max-width:380px){
+  .wheel-wrap{ width:210px; height:210px; }
+}
