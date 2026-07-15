@@ -206,6 +206,28 @@ function renderCart(){
   if(totalEl) totalEl.textContent = `${fmt(cartTotal())} د.ك`;
 }
 
+/* -------- Product search filter (home page) -------- */
+function initProductSearch(){
+  const input = $('#productSearch');
+  const grid = $('#productGrid');
+  const empty = $('#productEmpty');
+  if(!input || !grid) return;
+
+  const cards = $$('.product-card', grid);
+
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    let visibleCount = 0;
+    cards.forEach(card => {
+      const name = (card.dataset.name || card.querySelector('h3')?.textContent || '').toLowerCase();
+      const match = name.includes(q);
+      card.style.display = match ? '' : 'none';
+      if(match) visibleCount++;
+    });
+    if(empty) empty.classList.toggle('show', visibleCount === 0);
+  });
+}
+
 /* -------- Contact form (demo only, no backend) -------- */
 function initContactForm(){
   const form = $('#contactForm');
@@ -222,5 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initReveal();
   initCart();
+  initProductSearch();
   initContactForm();
 });
