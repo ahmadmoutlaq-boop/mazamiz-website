@@ -7,7 +7,7 @@ const PRODUCTS = {
   'red-watermelon': {
     name: 'بطيخ أحمر كويتي',
     brand: 'مزمز',
-    price: 3.50,
+    price: 1.75,
     unit: 'للكيلوغرام',
     color: '#c81f3f',
     thumb: 'red'
@@ -15,7 +15,7 @@ const PRODUCTS = {
   'yellow-watermelon': {
     name: 'بطيخ أصفر',
     brand: 'مزمز',
-    price: 4.00,
+    price: 2.00,
     unit: 'للكيلوغرام',
     color: '#dd9a00',
     thumb: 'yellow'
@@ -23,7 +23,7 @@ const PRODUCTS = {
   'shamam': {
     name: 'شمام كويتي',
     brand: 'وتين',
-    price: 2.75,
+    price: 1.38,
     unit: 'للكيلوغرام',
     color: '#d67c26',
     thumb: 'cantaloupe'
@@ -41,18 +41,38 @@ const THUMBS = {
 let cart = {}; // { productId: qty }
 
 /* -------- Helpers -------- */
+/* -------- Small helpers --------
+   fmt()   → formats a number as Kuwaiti-Dinar-style currency text
+             (the د.ك symbol itself is added separately in the
+             markup/templates, this only formats the digits).
+   $/$$    → tiny querySelector/querySelectorAll shortcuts used
+             everywhere below instead of the long DOM API names,
+             purely to keep the rest of this file readable. */
 const fmt = (n) => n.toLocaleString('ar-KW', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const $ = (sel, ctx=document) => ctx.querySelector(sel);
 const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
 
+// Total number of items in the cart (sum of quantities, not
+// distinct products) — shown in the nav badge and drawer header.
 function cartCount(){
   return Object.values(cart).reduce((a,b)=>a+b,0);
 }
+// Cart subtotal in KWD, recalculated fresh every time from the
+// PRODUCTS price list rather than being cached anywhere, so it
+// can never drift out of sync with a quantity change.
 function cartTotal(){
   return Object.entries(cart).reduce((sum,[id,qty])=> sum + PRODUCTS[id].price*qty, 0);
 }
 
-/* -------- Nav -------- */
+/* -------- Nav --------
+   Two independent jobs:
+   1) toggle a `.scrolled` class once the page scrolls past the
+      very top, so the header can pick up a border/background
+      via CSS (see .nav.scrolled in style.css) instead of always
+      looking the same as the transparent hero underneath it.
+   2) wire up the mobile hamburger menu open/close, and make sure
+      tapping any link inside that menu closes it again — without
+      this, the menu would stay open after navigating on mobile. */
 function initNav(){
   const nav = $('.nav');
   if(!nav) return;
@@ -75,7 +95,15 @@ function initNav(){
   }
 }
 
-/* -------- Reveal on scroll -------- */
+/* -------- Reveal on scroll --------
+   Generic fade-up-on-scroll used all over the site (product
+   cards, section headers, testimonials, the stats section...).
+   Any element with class="reveal" starts hidden/offset via CSS;
+   this just adds the "in" class the first time it enters the
+   viewport, which triggers the actual CSS transition. Using one
+   shared IntersectionObserver for every .reveal element (rather
+   than one observer per element) keeps this cheap even on pages
+   with many animated sections. */
 function initReveal(){
   const items = $$('.reveal');
   if(!items.length) return;
@@ -83,7 +111,7 @@ function initReveal(){
     entries.forEach(e => {
       if(e.isIntersecting){
         e.target.classList.add('in');
-        io.unobserve(e.target);
+        io.unobserve(e.target); // fade in once, then stop watching
       }
     });
   }, { threshold:.12, rootMargin:'0px 0px -60px 0px' });
@@ -239,6 +267,176 @@ function initContactForm(){
   });
 }
 
+/* =========================================================
+   Animated Statistics (home page only)
+   -----------------------------------------------------------
+   Each <span class="stat-count" data-target="1200"> starts its
+   life showing "0". The moment the section becomes visible on
+   screen (via IntersectionObserver — the same lightweight
+   technique used by initReveal() above, so we're not adding a
+   second/heavier scroll-listener just for this feature), we
+   animate the number from 0 up to data-target using
+   requestAnimationFrame. Animating with rAF (rather than
+   setInterval) keeps it synced to the browser's paint cycle,
+   which is both smoother and cheaper on battery than a timer.
+
+   data-decimal="1" is used for the "4.9" rating stat so the
+   counter formats with one decimal place instead of a whole
+   number — every other stat is a plain integer count.
+
+   The whole section only animates ONCE per page load: once a
+   card has counted up, we stop observing it so scrolling past
+   it again doesn't restart the animation.
+   ========================================================= */
+function initStatsCounter(){
+  const counters = $$('.stat-count');
+  if(!counters.length) return;
+
+  // Animates a single <span> from 0 to its data-target over
+  // roughly 1.6s. duration is intentionally short — long counting
+  // animations feel sluggish rather than impressive.
+  function animateCount(el){
+    const target = parseFloat(el.dataset.target);
+    const decimals = parseInt(el.dataset.decimal || '0', 10);
+    const duration = 1600; // ms
+    const start = performance.now();
+
+    function tick(now){
+      const progress = Math.min((now - start) / duration, 1);
+      // ease-out cubic: fast at the start, gently settles at the end
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = target * eased;
+      el.textContent = decimals > 0 ? value.toFixed(decimals) : Math.round(value).toLocaleString('en-US');
+      if(progress < 1){
+        requestAnimationFrame(tick);
+      } else {
+        // snap to the exact final value to avoid any rounding drift
+        el.textContent = decimals > 0 ? target.toFixed(decimals) : target.toLocaleString('en-US');
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        animateCount(entry.target);
+        io.unobserve(entry.target); // only ever animate once
+      }
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(el => io.observe(el));
+}
+
+/* =========================================================
+   Lucky Wheel (عجلة الحظ) — home page only, entertainment only
+   -----------------------------------------------------------
+   Important: this feature is PURELY visual. It does not talk to
+   any server, does not store or apply a real discount anywhere,
+   and does not touch the shopping cart — it exists only to be a
+   fun, on-brand moment for the visitor, as requested.
+
+   How the spin math works:
+   - The wheel has 6 equal 60° slices (see .wheel's conic-gradient
+     in css/style.css). Slice index 0 is the one starting at the
+     top (0°) going clockwise, matching PRIZES[0] below.
+   - The pointer is fixed at the top (0°) and never moves — only
+     the wheel itself rotates.
+   - To make a given slice end up under the pointer, we rotate the
+     wheel so that slice's *center* angle lands at 0°. Since CSS
+     rotation is clockwise-positive, rotating the wheel by R moves
+     the content that was at angle (360 - R) to the top. So for a
+     target slice with center angle `centerAngle`, the rotation
+     that lands it at the top is `360 - centerAngle` (mod 360).
+   - We then add several full spins (360 * N) purely for visual
+     effect — it doesn't change *which* slice ends up on top, only
+     how many times the wheel visibly spins before stopping there.
+   - A random prize is picked with Math.random() BEFORE the spin
+     starts, so the animation is just visually "catching up" to an
+     already-decided outcome — this keeps the result logic simple
+     and easy to audit (no reverse-engineering the final CSS angle
+     to figure out what "won").
+   ========================================================= */
+function initLuckyWheel(){
+  const trigger  = $('#luckTrigger');
+  const overlay  = $('#luckOverlay');
+  const modal    = $('#luckModal');
+  const closeBtn = $('#luckClose');
+  const wheel    = $('#luckWheel');
+  const spinBtn  = $('#luckSpin');
+  const resultBox   = $('#luckResult');
+  const resultText  = $('#luckPrizeText');
+  if(!trigger || !wheel) return;
+
+  // Order MUST match the 6 conic-gradient slices in CSS and the
+  // 6 .wheel-segment-label elements in the HTML (both go in the
+  // same clockwise order starting from the top).
+  const PRIZES = [
+    'خصم 5%',
+    'توصيل مجاني',
+    'خصم 10%',
+    'كوبون للطلب القادم',
+    'خصم 15%',
+    'حظ أوفر في المرة القادمة'
+  ];
+  const SLICE_ANGLE = 360 / PRIZES.length; // 60°
+
+  let spinning = false;
+  let currentRotation = 0; // keeps growing across spins so it always spins forward
+
+  function openModal(){
+    overlay.classList.add('open');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    overlay.classList.remove('open');
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  trigger.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
+
+  spinBtn.addEventListener('click', () => {
+    if(spinning) return; // ignore extra clicks mid-spin
+    spinning = true;
+    spinBtn.disabled = true;
+    resultBox.classList.remove('show');
+
+    // 1) Decide the outcome first (see comment block above).
+    const winningIndex = Math.floor(Math.random() * PRIZES.length);
+    const centerAngle = winningIndex * SLICE_ANGLE + SLICE_ANGLE / 2;
+
+    // 2) Work out how many degrees to add so the wheel always
+    //    spins forward (never backward, which would look broken)
+    //    even though currentRotation keeps accumulating spin after spin.
+    const fullSpins = 5; // purely cosmetic — how many full turns before landing
+    const targetWithinCircle = (360 - centerAngle) % 360;
+    const previousWithinCircle = currentRotation % 360;
+    let delta = targetWithinCircle - previousWithinCircle;
+    if(delta <= 0) delta += 360;
+    currentRotation += fullSpins * 360 + delta;
+
+    wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+    // 3) Reveal the result only once the CSS transition has
+    //    actually finished, so the text never appears before the
+    //    wheel visually stops.
+    const onSpinEnd = () => {
+      wheel.removeEventListener('transitionend', onSpinEnd);
+      resultText.textContent = '🎉 ' + PRIZES[winningIndex];
+      resultBox.classList.add('show');
+      spinning = false;
+      spinBtn.disabled = false;
+    };
+    wheel.addEventListener('transitionend', onSpinEnd);
+  });
+}
+
 /* -------- Init -------- */
 document.addEventListener('DOMContentLoaded', () => {
   initNav();
@@ -246,4 +444,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initCart();
   initProductSearch();
   initContactForm();
+  initStatsCounter();
+  initLuckyWheel();
 });
