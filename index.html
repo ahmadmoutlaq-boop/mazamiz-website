@@ -145,20 +145,43 @@
       <p>كل صنف من إنتاج مزمز و وتين يمرّ بفرز دقيق قبل أن يصل إليك.</p>
     </div>
 
-    <div class="product-grid">
+    <div class="product-search reveal">
+      <input type="text" id="productSearch" placeholder="ابحث عن منتج... (مثال: بطيخ، شمام)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    </div>
+
+    <div class="product-grid" id="productGrid">
 
       <!-- بطيخ أحمر -->
-      <article class="product-card reveal">
+      <article class="product-card reveal" data-name="بطيخ أحمر كويتي مزمز">
         <div class="product-media red">
           <span class="product-tag red">مزمز</span>
+          <span class="badge-flag bestseller">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="11" height="11"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+            الأكثر مبيعًا
+          </span>
           <svg viewBox="0 0 160 160" fill="none">
-            <circle cx="80" cy="80" r="70" fill="#c81f3f"/>
-            <circle cx="80" cy="80" r="54" fill="#fff5f6"/>
-            <circle cx="80" cy="80" r="38" fill="#e8384f"/>
+            <defs>
+              <radialGradient id="gradRed" cx="38%" cy="32%" r="75%">
+                <stop offset="0%" stop-color="#ff5f78"/>
+                <stop offset="55%" stop-color="#c81f3f"/>
+                <stop offset="100%" stop-color="#8f1530"/>
+              </radialGradient>
+              <radialGradient id="gradRedFlesh" cx="42%" cy="38%" r="70%">
+                <stop offset="0%" stop-color="#ff8a97"/>
+                <stop offset="60%" stop-color="#e8384f"/>
+                <stop offset="100%" stop-color="#c2233d"/>
+              </radialGradient>
+            </defs>
+            <ellipse cx="80" cy="146" rx="46" ry="8" fill="#000" opacity=".08"/>
+            <circle cx="80" cy="78" r="70" fill="url(#gradRed)"/>
+            <circle cx="80" cy="78" r="54" fill="#fff5f6"/>
+            <circle cx="80" cy="78" r="38" fill="url(#gradRedFlesh)"/>
+            <ellipse cx="62" cy="58" rx="16" ry="10" fill="#fff" opacity=".22"/>
             <g fill="#2b0d12">
-              <circle cx="66" cy="66" r="3.4"/><circle cx="96" cy="72" r="3.4"/>
-              <circle cx="62" cy="90" r="3.4"/><circle cx="100" cy="94" r="3.4"/>
-              <circle cx="80" cy="106" r="3.4"/>
+              <circle cx="66" cy="64" r="3.2"/><circle cx="96" cy="70" r="3.2"/>
+              <circle cx="62" cy="88" r="3.2"/><circle cx="100" cy="92" r="3.2"/>
+              <circle cx="80" cy="104" r="3.2"/>
             </g>
           </svg>
         </div>
@@ -174,17 +197,31 @@
       </article>
 
       <!-- بطيخ أصفر -->
-      <article class="product-card reveal">
+      <article class="product-card reveal" data-name="بطيخ أصفر مزمز">
         <div class="product-media yellow">
           <span class="product-tag yellow">مزمز</span>
           <svg viewBox="0 0 160 160" fill="none">
-            <circle cx="80" cy="80" r="70" fill="#dd9a00"/>
-            <circle cx="80" cy="80" r="54" fill="#fff8e6"/>
-            <circle cx="80" cy="80" r="38" fill="#f5c343"/>
+            <defs>
+              <radialGradient id="gradYellow" cx="38%" cy="32%" r="75%">
+                <stop offset="0%" stop-color="#ffc94a"/>
+                <stop offset="55%" stop-color="#dd9a00"/>
+                <stop offset="100%" stop-color="#a06e00"/>
+              </radialGradient>
+              <radialGradient id="gradYellowFlesh" cx="42%" cy="38%" r="70%">
+                <stop offset="0%" stop-color="#ffe089"/>
+                <stop offset="60%" stop-color="#f5c343"/>
+                <stop offset="100%" stop-color="#e0a91f"/>
+              </radialGradient>
+            </defs>
+            <ellipse cx="80" cy="146" rx="46" ry="8" fill="#000" opacity=".08"/>
+            <circle cx="80" cy="78" r="70" fill="url(#gradYellow)"/>
+            <circle cx="80" cy="78" r="54" fill="#fff8e6"/>
+            <circle cx="80" cy="78" r="38" fill="url(#gradYellowFlesh)"/>
+            <ellipse cx="62" cy="58" rx="16" ry="10" fill="#fff" opacity=".28"/>
             <g fill="#5c3d00">
-              <circle cx="66" cy="66" r="3.4"/><circle cx="96" cy="72" r="3.4"/>
-              <circle cx="62" cy="90" r="3.4"/><circle cx="100" cy="94" r="3.4"/>
-              <circle cx="80" cy="106" r="3.4"/>
+              <circle cx="66" cy="64" r="3.2"/><circle cx="96" cy="70" r="3.2"/>
+              <circle cx="62" cy="88" r="3.2"/><circle cx="100" cy="92" r="3.2"/>
+              <circle cx="80" cy="104" r="3.2"/>
             </g>
           </svg>
         </div>
@@ -200,12 +237,25 @@
       </article>
 
       <!-- شمام -->
-      <article class="product-card reveal">
+      <article class="product-card reveal" data-name="شمام كويتي وتين">
         <div class="product-media cantaloupe">
           <span class="product-tag cantaloupe">وتين</span>
+          <span class="badge-flag seasonal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" width="11" height="11"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+            موسمي
+          </span>
           <svg viewBox="0 0 160 160" fill="none">
-            <circle cx="80" cy="80" r="70" fill="#d67c26"/>
-            <path d="M20 60c20-6 24 30 10 46M32 34c20 0 20 40 4 54M50 18c20 6 14 46-2 60M80 12c20 4 8 50-6 64M108 18c16 10 4 50-10 62M126 34c16 16-4 48-20 60M140 60c10 20-16 46-30 50" stroke="#b3651a" stroke-width="3.4" stroke-linecap="round" fill="none"/>
+            <defs>
+              <radialGradient id="gradCant" cx="38%" cy="32%" r="75%">
+                <stop offset="0%" stop-color="#f0a558"/>
+                <stop offset="55%" stop-color="#d67c26"/>
+                <stop offset="100%" stop-color="#9a5714"/>
+              </radialGradient>
+            </defs>
+            <ellipse cx="80" cy="146" rx="46" ry="8" fill="#000" opacity=".08"/>
+            <circle cx="80" cy="78" r="70" fill="url(#gradCant)"/>
+            <ellipse cx="62" cy="56" rx="18" ry="11" fill="#fff" opacity=".18"/>
+            <path d="M20 58c20-6 24 30 10 46M32 32c20 0 20 40 4 54M50 16c20 6 14 46-2 60M80 10c20 4 8 50-6 64M108 16c16 10 4 50-10 62M126 32c16 16-4 48-20 60M140 58c10 20-16 46-30 50" stroke="#b3651a" stroke-width="3.2" stroke-linecap="round" fill="none" opacity=".8"/>
           </svg>
         </div>
         <h3>شمام كويتي</h3>
@@ -220,6 +270,7 @@
       </article>
 
     </div>
+    <p class="product-empty" id="productEmpty">ما لقينا منتجات مطابقة لبحثك. جرب كلمة أخرى.</p>
   </div>
 </section>
 
@@ -289,7 +340,7 @@
         <p class="testi-quote">"الشمام من وتين برائحته العطرية وحلاوته صار طلب أساسي عندي كل أسبوع."</p>
         <div class="testi-person">
           <div class="avatar" style="background:#d67c26;">م.ع</div>
-          <div><b>محمد العزام</b><span>الزرقاء</span></div>
+          <div><b>محمد العزام</b><span>حولي</span></div>
         </div>
       </div>
       <div class="testi-card reveal">
@@ -303,7 +354,21 @@
         <p class="testi-quote">"جربت البطيخ الأصفر لأول مرة من مزمز، حلاوته عسلية وشكله يلفت الأنظار على السفرة."</p>
         <div class="testi-person">
           <div class="avatar" style="background:#dd9a00;">ر.ن</div>
-          <div><b>رنا النمر</b><span>إربد</span></div>
+          <div><b>رنا النمر</b><span>الفروانية</span></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+        </div>
+        <p class="testi-quote">"الطلب عبر واتساب كان سريع جدًا، والتوصيل وصل بنفس اليوم — تجربة مريحة من الألف للياء."</p>
+        <div class="testi-person">
+          <div class="avatar" style="background:#1f7a4d;">ف.س</div>
+          <div><b>فهد السالم</b><span>الجهراء</span></div>
         </div>
       </div>
     </div>
@@ -356,14 +421,9 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>فريق المبيعات</h4>
+        <h4>الإدارة</h4>
         <div class="sales-team">
-          <a href="tel:+96550103368" class="sales-chip manager"><span class="dot" style="background:#0e7a6b;">أ</span>أحمد جاسم — مدير الشركة</a>
-          <span class="sales-chip"><span class="dot" style="background:#c81f3f;">ي</span>يونس</span>
-          <span class="sales-chip"><span class="dot" style="background:#1f7a4d;">أ</span>أحمد</span>
-          <span class="sales-chip"><span class="dot" style="background:#dd9a00;">س</span>السبعاوي شربوش</span>
-          <span class="sales-chip"><span class="dot" style="background:#d67c26;">م</span>العم معين</span>
-          <span class="sales-chip"><span class="dot" style="background:#8a6bd1;">ح</span>حمزاوي</span>
+          <span class="sales-chip manager"><span class="dot" style="background:#0e7a6b;">أ</span>المدير: أحمد</span>
         </div>
       </div>
     </div>
@@ -398,6 +458,6 @@
   </div>
 </aside>
 
-<script src="js/main.js"></script>
+<a class="whatsapp-fab" href="https://wa.me/96550103368?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%85%D8%B2%D9%85%D8%B2%D8%8C%20%D8%A8%D8%AF%D9%8A%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%B7%D9%84%D8%A8" target="_blank" rel="noopener" aria-label="راسلنا عبر واتساب">\n  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.06L2 22l5.1-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.63-1.14-4.34-3.8-4.47-3.98-.13-.18-1.07-1.42-1.07-2.71 0-1.29.68-1.93.92-2.19.24-.26.52-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.45.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.45-.13.16-.28.35-.4.47-.13.13-.27.28-.12.55.16.26.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.17 1.34.27.13.42.11.58-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.26.13.44.19.5.3.06.11.06.62-.16 1.24Z"/></svg>\n  <span>راسلنا واتساب</span>\n</a>\n<script src="js/main.js"></script>
 </body>
 </html>
