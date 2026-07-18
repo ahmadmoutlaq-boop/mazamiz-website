@@ -945,6 +945,25 @@ ul{ margin:0; padding:0; list-style:none; }
   padding:40px 20px;
 }
 .cart-empty svg{ width:52px; height:52px; margin:0 auto 16px; opacity:.4; }
+
+/* Active lucky-wheel prize banner, shown at the top of the cart
+   items list when the visitor has an unused prize (see
+   renderCart() in main.js). Reuses the same green/gold palette
+   as the rest of the site rather than a generic alert color. */
+.prize-banner{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  background:linear-gradient(135deg, rgba(31,122,77,.08), rgba(221,154,0,.08));
+  border:1px solid rgba(31,122,77,.25);
+  border-radius:var(--r-md);
+  padding:14px 16px;
+  animation:badgePop .4s var(--ease) both;
+}
+.prize-banner span:first-child{ font-size:20px; line-height:1; }
+.prize-banner b{ display:block; font-size:13.5px; margin-bottom:2px; }
+.prize-banner span:last-child{ font-size:12.5px; color:var(--text-soft); }
+
 .cart-item{
   display:flex;
   gap:14px;
@@ -1219,6 +1238,7 @@ ul{ margin:0; padding:0; list-style:none; }
 /* Utility */
 .mt-lg{ margin-top:48px; }
 .text-center{ text-align:center; }
+.hidden{ display:none !important; }
 
 /* =========================================================
    WhatsApp floating button
