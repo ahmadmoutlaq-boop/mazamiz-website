@@ -529,6 +529,9 @@ ul{ margin:0; padding:0; list-style:none; }
 .product-media.red{ background:linear-gradient(160deg,#fdecef,#fff8f9); }
 .product-media.yellow{ background:linear-gradient(160deg,#fdf3df,#fffcf4); }
 .product-media.cantaloupe{ background:linear-gradient(160deg,#fbe9d8,#fffaf4); }
+.product-media.strawberry{ background:linear-gradient(160deg,#fde3e7,#fff8f9); }
+.product-media.mango{ background:linear-gradient(160deg,#fdedc7,#fffcf4); }
+.product-media.grapes{ background:linear-gradient(160deg,#ecdff5,#fbf8fd); }
 
 .product-tag{
   position:absolute;
@@ -546,6 +549,9 @@ ul{ margin:0; padding:0; list-style:none; }
 .product-tag.red{ color:var(--red); }
 .product-tag.yellow{ color:var(--gold-deep); }
 .product-tag.cantaloupe{ color:var(--cantaloupe-deep); }
+.product-tag.strawberry{ color:var(--red); }
+.product-tag.mango{ color:var(--gold-deep); }
+.product-tag.grapes{ color:#6b3fa0; }
 
 .badge-flag{
   position:absolute;
