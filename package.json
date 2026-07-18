@@ -1,0 +1,8 @@
+{
+  "name": "mazamiz-website",
+  "private": true,
+  "description": "موقع مزمز — يستخدم Netlify Functions + Netlify Blobs لتخزين الأسعار التي يتحكم بها الأدمن من admin.html",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}
