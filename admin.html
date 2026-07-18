@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- منع محركات البحث من فهرسة صفحة الأدمن -->
+<meta name="robots" content="noindex, nofollow">
+<title>لوحة تحكم الأسعار | مزمز</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* أنماط خاصة بصفحة الأدمن فقط — تستخدم نفس متغيرات
+     الألوان والخطوط من css/style.css حتى تبقى متناسقة مع
+     هوية الموقع، بس بتخطيط أبسط (بطاقة وحدة بنص الصفحة). */
+  body{ background:var(--bg-alt); min-height:100vh; }
+  .admin-wrap{
+    max-width:480px;
+    margin:0 auto;
+    padding:64px 20px;
+  }
+  .admin-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--r-lg);
+    padding:32px 28px;
+    box-shadow:var(--shadow-md);
+  }
+  .admin-card h1{ font-size:22px; margin-bottom:6px; }
+  .admin-card p.sub{ color:var(--text-soft); font-size:13.5px; margin-bottom:24px; }
+  .admin-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:14px 0;
+    border-top:1px solid var(--line);
+  }
+  .admin-row:first-of-type{ border-top:none; }
+  .admin-row .name{ font-size:14.5px; font-weight:700; }
+  .admin-row .name small{ display:block; font-weight:500; color:var(--text-soft); font-size:12px; margin-top:2px; }
+  .admin-row input{
+    width:100px;
+    text-align:center;
+    border:1px solid var(--line);
+    border-radius:var(--r-sm);
+    padding:10px 8px;
+    font-size:15px;
+    font-family:inherit;
+    background:var(--bg-alt);
+  }
+  .admin-row input:focus{ outline:none; border-color:var(--red); background:#fff; }
+  .admin-status{
+    margin-top:16px;
+    font-size:13px;
+    min-height:18px;
+  }
+  .admin-status.ok{ color:var(--green); }
+  .admin-status.err{ color:var(--red); }
+  .gate{ text-align:center; }
+  .gate .field{ text-align:right; }
+  .hidden{ display:none !important; }
+</style>
+</head>
+<body>
+
+<div class="admin-wrap">
+  <div class="admin-card">
+
+    <!-- ============ 1) بوابة كلمة المرور ============
+         تظهر أول ما تفتح الصفحة. بعد إدخال كلمة مرور صحيحة
+         (نفس الكلمة الموجودة داخل netlify/functions/prices.js)
+         تختفي هاي البطاقة وتظهر لوحة الأسعار تحتها. -->
+    <div id="gateView" class="gate">
+      <h1>🔒 لوحة تحكم الأسعار</h1>
+      <p class="sub">هذه الصفحة خاصة بإدارة مزمز فقط</p>
+      <div class="field">
+        <label for="passwordInput">كلمة المرور</label>
+        <input type="password" id="passwordInput" placeholder="••••••••">
+      </div>
+      <button class="btn btn-accent btn-block" id="unlockBtn">دخول</button>
+      <p class="admin-status err" id="gateError"></p>
+    </div>
+
+    <!-- ============ 2) لوحة تعديل الأسعار ============
+         مخفية بالبداية (class="hidden")، تظهر فقط بعد دخول
+         صحيح. القيم تُحمّل تلقائيًا من الخادم (GET) عند فتح
+         اللوحة، حتى تشوف آخر أسعار محفوظة فعليًا. -->
+    <div id="panelView" class="hidden">
+      <h1>💰 تعديل الأسعار</h1>
+      <p class="sub">أي تعديل هون بينعكس على الموقع لكل الزوار خلال ثوانٍ</p>
+
+      <div class="admin-row">
+        <span class="name">بطيخ أحمر كويتي <small>مزمز</small></span>
+        <input type="number" step="0.01" min="0" id="priceRed">
+      </div>
+      <div class="admin-row">
+        <span class="name">بطيخ أصفر <small>مزمز</small></span>
+        <input type="number" step="0.01" min="0" id="priceYellow">
+      </div>
+      <div class="admin-row">
+        <span class="name">شمام كويتي <small>وتين</small></span>
+        <input type="number" step="0.01" min="0" id="priceShamam">
+      </div>
+
+      <button class="btn btn-primary btn-block" id="saveBtn" style="margin-top:22px;">حفظ ونشر الأسعار</button>
+      <p class="admin-status" id="saveStatus"></p>
+
+      <p class="form-note text-center" style="margin-top:18px;">
+        <a href="index.html">↩ الرجوع للموقع</a>
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>
