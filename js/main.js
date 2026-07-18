@@ -67,6 +67,83 @@ const THUMBS = {
 /* -------- State -------- */
 let cart = {}; // { productId: qty }
 
+const CART_STORAGE_KEY = 'mazamiz_cart';
+const PRIZE_STORAGE_KEY = 'mazamiz_prize';
+
+// Cart is persisted to localStorage so it survives a page reload
+// AND survives navigating from the site to checkout.html (a
+// separate page load, which otherwise would lose the in-memory
+// `cart` variable entirely). This is a real deployed website, not
+// a sandboxed preview, so localStorage is the right tool here.
+function loadCartFromStorage(){
+  try {
+    const raw = localStorage.getItem(CART_STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : {};
+    // keep only ids that still exist in the catalogue, and only
+    // positive integer quantities — protects against a stale cart
+    // referencing a product that was since removed from PRODUCTS.
+    const clean = {};
+    Object.entries(parsed || {}).forEach(([id, qty]) => {
+      if(PRODUCTS[id] && Number.isFinite(qty) && qty > 0) clean[id] = qty;
+    });
+    return clean;
+  } catch(err){
+    return {};
+  }
+}
+function saveCartToStorage(){
+  try {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  } catch(err){
+    // storage unavailable (private browsing, quota, etc.) — the
+    // site still works, it just won't remember the cart on reload
+  }
+}
+
+/* -------- Lucky-wheel prize state --------
+   A won prize is stored once in localStorage so it survives the
+   trip from the homepage (where the wheel lives) to checkout.html
+   (a separate page). Each prize can only ever be marked "used"
+   once — after a successful order, markPrizeUsed() stamps it, and
+   getActivePrize() will then stop returning it for any future cart.
+
+   type meanings:
+   - 'percent'       → knock a % off the cart subtotal right now
+   - 'free_shipping' → waives the delivery fee at checkout
+   - 'next_order'    → not applicable to the CURRENT cart at all;
+                        kept only so admins/customers know it was won
+   - 'none'          → "better luck next time" — nothing to store */
+function getActivePrize(){
+  try {
+    const raw = localStorage.getItem(PRIZE_STORAGE_KEY);
+    if(!raw) return null;
+    const prize = JSON.parse(raw);
+    if(!prize || prize.used || prize.type === 'none') return null;
+    return prize;
+  } catch(err){
+    return null;
+  }
+}
+function savePrize(prize){
+  try {
+    localStorage.setItem(PRIZE_STORAGE_KEY, JSON.stringify(prize));
+  } catch(err){ /* ignore — wheel still shows the result visually */ }
+}
+function markPrizeUsed(){
+  const prize = getActivePrize();
+  if(!prize) return;
+  prize.used = true;
+  savePrize(prize);
+}
+// Given the current subtotal, returns how much the active prize
+// (if any) discounts it — used by both the cart drawer preview
+// and the real checkout total.
+function computePrizeDiscount(subtotal){
+  const prize = getActivePrize();
+  if(!prize || prize.type !== 'percent') return 0;
+  return Math.round(subtotal * (prize.value / 100) * 1000) / 1000;
+}
+
 /* -------- Helpers -------- */
 /* -------- Small helpers --------
    fmt()   → formats a number as Kuwaiti-Dinar-style currency text
@@ -189,17 +266,20 @@ function initCart(){
     });
   });
 
+  // "إتمام الشراء" now hands off to the real checkout page instead
+  // of faking a purchase inline. The cart itself is already saved
+  // to localStorage (see renderCart → saveCartToStorage), so
+  // checkout.html — a separate page load — can read the exact same
+  // cart the moment it opens.
   const checkoutBtn = $('#checkoutBtn');
   if(checkoutBtn){
     checkoutBtn.addEventListener('click', () => {
       if(cartCount() === 0) return;
-      showToast('شكرًا لطلبك! سيتواصل معك فريق مزمز قريبًا 🍉');
-      cart = {};
-      renderCart();
-      setTimeout(closeCart, 900);
+      window.location.href = 'checkout.html';
     });
   }
 
+  cart = loadCartFromStorage();
   renderCart();
 }
 
@@ -209,6 +289,8 @@ function renderCart(){
   const totalEl = $('#cartTotalValue');
   const countEl = $('#cartCountLabel');
   if(!list) return;
+
+  saveCartToStorage(); // keep localStorage in sync on every render
 
   const count = cartCount();
   if(badge){
@@ -224,7 +306,33 @@ function renderCart(){
         <p>سلتك فارغة حاليًا.<br>أضف بعضًا من ثمار مزمز الطازجة.</p>
       </div>`;
   } else {
-    list.innerHTML = Object.entries(cart).map(([id,qty]) => {
+    // Active lucky-wheel prize banner (percent discount or free
+    // shipping only — "next order" / "no prize" outcomes have
+    // nothing meaningful to show inside the CURRENT cart).
+    const prize = getActivePrize();
+    let prizeBannerHtml = '';
+    if(prize && prize.type === 'percent'){
+      const discount = computePrizeDiscount(cartTotal());
+      prizeBannerHtml = `
+        <div class="prize-banner">
+          <span>🎉</span>
+          <div>
+            <b>جائزتك مطبّقة: ${prize.label}</b>
+            <span>خصم ${fmt(discount)} د.ك على هذا الطلب</span>
+          </div>
+        </div>`;
+    } else if(prize && prize.type === 'free_shipping'){
+      prizeBannerHtml = `
+        <div class="prize-banner">
+          <span>🎉</span>
+          <div>
+            <b>جائزتك مطبّقة: ${prize.label}</b>
+            <span>سيتم إلغاء رسوم التوصيل عند إتمام الطلب</span>
+          </div>
+        </div>`;
+    }
+
+    list.innerHTML = prizeBannerHtml + Object.entries(cart).map(([id,qty]) => {
       const p = PRODUCTS[id];
       return `
       <div class="cart-item" data-id="${id}">
@@ -258,7 +366,9 @@ function renderCart(){
     });
   }
 
-  if(totalEl) totalEl.textContent = `${fmt(cartTotal())} د.ك`;
+  const subtotal = cartTotal();
+  const discount = computePrizeDiscount(subtotal);
+  if(totalEl) totalEl.textContent = `${fmt(subtotal - discount)} د.ك`;
 }
 
 /* -------- Product search filter (home page) -------- */
@@ -407,6 +517,17 @@ function initLuckyWheel(){
     'خصم 15%',
     'حظ أوفر في المرة القادمة'
   ];
+  // Machine-readable meaning of each prize above (same order) —
+  // this is what actually gets saved and later applied at
+  // checkout; PRIZES itself is only ever used for display text.
+  const PRIZE_META = [
+    { type: 'percent',       value: 5  },
+    { type: 'free_shipping', value: 0  },
+    { type: 'percent',       value: 10 },
+    { type: 'next_order',    value: 0  },
+    { type: 'percent',       value: 15 },
+    { type: 'none',          value: 0  }
+  ];
   const SLICE_ANGLE = 360 / PRIZES.length; // 60°
 
   let spinning = false;
@@ -459,6 +580,24 @@ function initLuckyWheel(){
       resultBox.classList.add('show');
       spinning = false;
       spinBtn.disabled = false;
+
+      // Persist the prize (see the big comment above initLuckyWheel
+      // and the "Lucky-wheel prize state" helpers near the top of
+      // this file). A "no prize" outcome is intentionally NOT
+      // saved — there's nothing to apply or reuse-block for it.
+      const meta = PRIZE_META[winningIndex];
+      if(meta.type !== 'none'){
+        savePrize({
+          label: PRIZES[winningIndex],
+          type: meta.type,
+          value: meta.value,
+          used: false,
+          wonAt: new Date().toISOString()
+        });
+        // reflect the win immediately if the cart drawer happens
+        // to already be open behind this modal
+        if(typeof renderCart === 'function' && $('#cartItems')) renderCart();
+      }
     };
     wheel.addEventListener('transitionend', onSpinEnd);
   });
@@ -504,6 +643,12 @@ async function applyLivePrices(){
     // total too so it matches the newly-loaded prices
     if (typeof renderCart === 'function' && $('#cartItems')) {
       renderCart();
+    }
+    // checkout.html renders its own summary independently of the
+    // cart drawer — refresh it too if that function is loaded
+    // (it only exists on checkout.html, via js/checkout.js)
+    if (typeof renderOrderSummary === 'function' && $('#orderItems')) {
+      renderOrderSummary();
     }
   } catch (err) {
     // network error, offline, etc. — fall back silently to defaults
