@@ -18,7 +18,10 @@ const ENDPOINT = '/.netlify/functions/prices';
 const FIELD_MAP = {
   'priceRed': 'red-watermelon',
   'priceYellow': 'yellow-watermelon',
-  'priceShamam': 'shamam'
+  'priceShamam': 'shamam',
+  'priceStrawberry': 'strawberry',
+  'priceMango': 'mango',
+  'priceGrapes': 'grapes'
 };
 
 const gateView = document.getElementById('gateView');

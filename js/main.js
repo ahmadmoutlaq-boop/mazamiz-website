@@ -27,6 +27,30 @@ const PRODUCTS = {
     unit: 'للكيلوغرام',
     color: '#d67c26',
     thumb: 'cantaloupe'
+  },
+  'strawberry': {
+    name: 'فراولة',
+    brand: 'مزمز',
+    price: 2.25,
+    unit: 'للكيلوغرام',
+    color: '#c81f3f',
+    thumb: 'strawberry'
+  },
+  'mango': {
+    name: 'مانجو',
+    brand: 'مزمز',
+    price: 2.50,
+    unit: 'للكيلوغرام',
+    color: '#e8a400',
+    thumb: 'mango'
+  },
+  'grapes': {
+    name: 'عنب',
+    brand: 'مزمز',
+    price: 1.95,
+    unit: 'للكيلوغرام',
+    color: '#6b3fa0',
+    thumb: 'grapes'
   }
 };
 
@@ -34,7 +58,10 @@ const PRODUCTS = {
 const THUMBS = {
   red: `<svg viewBox="0 0 64 64" fill="none"><path d="M32 6C46 6 58 18 58 32C58 40 46 6 32 6Z" fill="#c81f3f"/><circle cx="32" cy="32" r="26" fill="#c81f3f"/><circle cx="32" cy="32" r="20" fill="#fff5f6"/><circle cx="32" cy="32" r="14" fill="#e8384f"/><circle cx="27" cy="27" r="1.6" fill="#2b0d12"/><circle cx="36" cy="30" r="1.6" fill="#2b0d12"/><circle cx="31" cy="37" r="1.6" fill="#2b0d12"/></svg>`,
   yellow: `<svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="26" fill="#dd9a00"/><circle cx="32" cy="32" r="20" fill="#fff8e6"/><circle cx="32" cy="32" r="14" fill="#f5c343"/><circle cx="27" cy="27" r="1.6" fill="#5c3d00"/><circle cx="36" cy="30" r="1.6" fill="#5c3d00"/><circle cx="31" cy="37" r="1.6" fill="#5c3d00"/></svg>`,
-  cantaloupe: `<svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="26" fill="#d67c26"/><path d="M8 24c8-2 10 12 4 18M14 14c8 0 8 16 2 22M22 8c8 2 6 18 0 24M32 6c8 2 4 20-2 26M42 8c6 4 2 20-4 26M50 14c6 6-2 20-8 24M56 24c4 8-6 18-12 20" stroke="#b3651a" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>`
+  cantaloupe: `<svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="26" fill="#d67c26"/><path d="M8 24c8-2 10 12 4 18M14 14c8 0 8 16 2 22M22 8c8 2 6 18 0 24M32 6c8 2 4 20-2 26M42 8c6 4 2 20-4 26M50 14c6 6-2 20-8 24M56 24c4 8-6 18-12 20" stroke="#b3651a" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>`,
+  strawberry: `<svg viewBox="0 0 64 64" fill="none"><path d="M32 18c-12 0-20 10-20 22 0 10 10 18 20 18s20-8 20-18c0-12-8-22-20-22Z" fill="#e8384f"/><path d="M24 12l4 8 4-8 4 8 4-8" stroke="#1f7a4d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="26" cy="30" r="1.4" fill="#fff8e6"/><circle cx="36" cy="28" r="1.4" fill="#fff8e6"/><circle cx="30" cy="38" r="1.4" fill="#fff8e6"/><circle cx="38" cy="40" r="1.4" fill="#fff8e6"/></svg>`,
+  mango: `<svg viewBox="0 0 64 64" fill="none"><path d="M14 30c0-14 12-18 22-14 10 4 16 14 12 24-4 10-16 16-24 12-10-5-12-14-10-22Z" fill="#f5c343"/><path d="M30 16c4-6 10-8 14-6" stroke="#1f7a4d" stroke-width="3" stroke-linecap="round"/></svg>`,
+  grapes: `<svg viewBox="0 0 64 64" fill="none"><g fill="#6b3fa0"><circle cx="24" cy="26" r="8"/><circle cx="36" cy="26" r="8"/><circle cx="18" cy="38" r="8"/><circle cx="30" cy="38" r="8"/><circle cx="42" cy="38" r="8"/><circle cx="24" cy="50" r="8"/><circle cx="36" cy="50" r="8"/></g><path d="M30 12c2-4 6-6 10-5" stroke="#1f7a4d" stroke-width="3" stroke-linecap="round"/></svg>`
 };
 
 /* -------- State -------- */
