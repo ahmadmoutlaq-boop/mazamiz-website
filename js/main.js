@@ -437,6 +437,52 @@ function initLuckyWheel(){
   });
 }
 
+/* =========================================================
+   Live prices (loaded from netlify/functions/prices.js)
+   -----------------------------------------------------------
+   The admin can change prices from admin.html at any time.
+   On every page load, we ask the serverless function for the
+   current prices and, if it answers successfully, override the
+   hardcoded PRODUCTS values above + update the visible price
+   text on the page (the <span class="price-value"> elements
+   added specifically for this in index.html).
+
+   This call is intentionally "fire and forget" from the page's
+   perspective: if the function isn't deployed yet, is briefly
+   unreachable, or returns bad data, we simply keep showing the
+   hardcoded prices already baked into the HTML/PRODUCTS above —
+   the site must never look broken just because this optional
+   feature is unavailable. */
+async function applyLivePrices(){
+  try {
+    const res = await fetch('/.netlify/functions/prices', { cache: 'no-store' });
+    if (!res.ok) return; // function not deployed / not reachable → keep defaults
+    const livePrices = await res.json();
+
+    Object.entries(livePrices).forEach(([id, price]) => {
+      const value = parseFloat(price);
+      if (!PRODUCTS[id] || !isFinite(value) || value <= 0) return;
+      PRODUCTS[id].price = value;
+    });
+
+    // reflect the new numbers in any visible price tags on this page
+    $$('.price-value').forEach(el => {
+      const id = el.dataset.productId;
+      if (PRODUCTS[id]) {
+        el.textContent = PRODUCTS[id].price.toFixed(2);
+      }
+    });
+
+    // if the cart drawer already has items rendered, refresh its
+    // total too so it matches the newly-loaded prices
+    if (typeof renderCart === 'function' && $('#cartItems')) {
+      renderCart();
+    }
+  } catch (err) {
+    // network error, offline, etc. — fall back silently to defaults
+  }
+}
+
 /* -------- Init -------- */
 document.addEventListener('DOMContentLoaded', () => {
   initNav();
@@ -446,4 +492,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initStatsCounter();
   initLuckyWheel();
+  applyLivePrices();
 });
