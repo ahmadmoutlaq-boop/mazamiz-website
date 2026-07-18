@@ -26,7 +26,10 @@ const ADMIN_PASSWORD = 'mazamiz2026';
 const DEFAULT_PRICES = {
   'red-watermelon': 1.75,
   'yellow-watermelon': 2.00,
-  'shamam': 1.38
+  'shamam': 1.38,
+  'strawberry': 2.25,
+  'mango': 2.50,
+  'grapes': 1.95
 };
 
 export default async (req) => {
