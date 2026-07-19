@@ -36,6 +36,39 @@
   --nav-h: 72px;
 }
 
+/* =========================================================
+   Dark mode (الوضع الداكن)
+   -----------------------------------------------------------
+   Toggled by adding data-theme="dark" to <html> — see
+   applyTheme() in js/account.js. Every color in the site is
+   already built from these CSS variables, so overriding them
+   here is enough to re-skin the whole site without touching
+   any component's own CSS. Brand accent colors (red/green/
+   gold/cantaloupe) stay the same in both modes on purpose —
+   they're the identity of مزمز and shouldn't shift with theme. */
+html[data-theme="dark"]{
+  --bg:            #121212;
+  --bg-alt:        #1a1a1a;
+  --bg-dark:       #050605;
+  --text:          #f2f2f2;
+  --text-soft:     #b3b3b3;
+  --text-faint:    #7a7a7a;
+  --line:          #2e2e2e;
+}
+html[data-theme="dark"] body{ background:var(--bg); }
+html[data-theme="dark"] .nav{ background:rgba(18,18,18,.72); }
+html[data-theme="dark"] .mobile-menu,
+html[data-theme="dark"] .account-dropdown{ background:rgba(18,18,18,.98); }
+html[data-theme="dark"] .icon-btn,
+html[data-theme="dark"] .wheel-center-btn,
+html[data-theme="dark"] .avatar-fallback{ background:var(--bg-alt); }
+html[data-theme="dark"] img{ filter:brightness(.92); }
+
+body, .nav, .cart-drawer, .product-card, .feature-card, .testi-card,
+.stat-card, .value-card, .order-card, .admin-card, .luck-modal{
+  transition:background-color .3s var(--ease-soft), color .3s var(--ease-soft), border-color .3s var(--ease-soft);
+}
+
 *,*::before,*::after{ box-sizing:border-box; }
 html{ scroll-behavior:smooth; }
 @media (prefers-reduced-motion: reduce){
@@ -248,6 +281,93 @@ ul{ margin:0; padding:0; list-style:none; }
 }
 .icon-btn:hover{ transform:translateY(-2px); box-shadow:var(--shadow-sm); border-color:var(--text-faint); }
 .icon-btn svg{ width:19px; height:19px; }
+
+/* =========================================================
+   Account menu (نظام الحساب) — nav dropdown
+   -----------------------------------------------------------
+   .account-menu wraps the person-icon button + its dropdown.
+   The dropdown's content (guest links vs. logged-in menu) is
+   filled in by js/account.js — this CSS only handles the
+   panel's look, open/close animation, and item styling. */
+.account-menu{ position:relative; }
+.account-name-pill{
+  display:none;
+  align-items:center;
+  gap:8px;
+  padding:6px 14px 6px 6px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:#fff;
+  font-size:13.5px;
+  font-weight:700;
+  transition:border-color .25s, transform .25s var(--ease-soft);
+}
+.account-name-pill:hover{ transform:translateY(-2px); border-color:var(--text-faint); }
+.account-name-pill .avatar-fallback{
+  width:26px; height:26px; border-radius:50%;
+  background:var(--red); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11.5px; font-weight:800; font-family:'Cairo',sans-serif;
+  flex:none;
+}
+.account-dropdown{
+  position:absolute;
+  top:calc(100% + 10px);
+  inset-inline-end:0;
+  min-width:220px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--r-md);
+  box-shadow:var(--shadow-lg);
+  padding:8px;
+  opacity:0;
+  transform:translateY(-8px);
+  pointer-events:none;
+  transition:opacity .25s var(--ease-soft), transform .25s var(--ease-soft);
+  z-index:520;
+}
+.account-dropdown.open{
+  opacity:1; transform:translateY(0); pointer-events:auto;
+}
+.account-dropdown .greet{
+  padding:10px 12px 12px;
+  font-size:13px;
+  color:var(--text-soft);
+  border-bottom:1px solid var(--line);
+  margin-bottom:6px;
+}
+.account-dropdown .greet b{ display:block; color:var(--text); font-size:14.5px; margin-top:2px; }
+.account-dropdown a, .account-dropdown button.dd-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  padding:10px 12px;
+  border-radius:10px;
+  font-size:13.5px;
+  font-weight:600;
+  color:var(--text);
+  border:none;
+  background:none;
+  text-align:right;
+  font-family:inherit;
+}
+.account-dropdown a:hover, .account-dropdown button.dd-item:hover{ background:var(--bg-alt); }
+.account-dropdown button.dd-item.danger{ color:var(--red); }
+.account-dropdown .dd-divider{ height:1px; background:var(--line); margin:6px 0; }
+.account-dropdown .dd-row{ display:flex; align-items:center; justify-content:space-between; padding:8px 12px; }
+.account-dropdown .dd-row span{ font-size:13.5px; font-weight:600; }
+.mini-toggle{
+  display:inline-flex; align-items:center; gap:6px;
+  border:1px solid var(--line); border-radius:999px;
+  padding:5px 5px 5px 12px; font-size:12px; font-weight:700;
+  background:var(--bg-alt); color:var(--text); font-family:inherit;
+}
+.mini-toggle .knob{
+  width:18px; height:18px; border-radius:50%;
+  background:#fff; box-shadow:var(--shadow-sm);
+  display:flex; align-items:center; justify-content:center; font-size:10px;
+}
 
 .cart-badge{
   position:absolute;
