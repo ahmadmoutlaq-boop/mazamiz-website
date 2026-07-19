@@ -26,13 +26,17 @@
     </a>
 
     <nav class="nav-links" aria-label="التنقل الرئيسي">
-      <a href="index.html" class="active">الرئيسية</a>
-      <a href="index.html#products">المنتجات</a>
-      <a href="about.html">من نحن</a>
-      <a href="contact.html">تواصل معنا</a>
+      <a href="index.html" class="active" data-i18n="nav.home">الرئيسية</a>
+      <a href="index.html#products" data-i18n="nav.products">المنتجات</a>
+      <a href="about.html" data-i18n="nav.about">من نحن</a>
+      <a href="contact.html" data-i18n="nav.contact">تواصل معنا</a>
     </nav>
 
     <div class="nav-actions">
+      <div class="account-menu">
+        <button class="icon-btn" id="accountToggle" aria-label="الحساب"></button>
+        <div class="account-dropdown" id="accountDropdown"></div>
+      </div>
       <button class="icon-btn js-open-cart" aria-label="فتح سلة المشتريات">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h2l2.6 12.6a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.5L21 8H6"/></svg>
         <span class="cart-badge" id="cartBadge">0</span>
@@ -43,10 +47,10 @@
     </div>
   </div>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">الرئيسية</a>
-    <a href="index.html#products">المنتجات</a>
-    <a href="about.html">من نحن</a>
-    <a href="contact.html">تواصل معنا</a>
+    <a href="index.html" data-i18n="nav.home">الرئيسية</a>
+    <a href="index.html#products" data-i18n="nav.products">المنتجات</a>
+    <a href="about.html" data-i18n="nav.about">من نحن</a>
+    <a href="contact.html" data-i18n="nav.contact">تواصل معنا</a>
   </div>
 </header>
 
@@ -56,18 +60,18 @@
     <div>
       <span class="hero-eyebrow">
         <svg class="dot" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#c81f3f"/><circle cx="12" cy="12" r="6" fill="#fff"/><circle cx="12" cy="12" r="3" fill="#e8384f"/></svg>
-        موسم القطاف بدأ الآن
+        <span data-i18n="hero.eyebrow">موسم القطاف بدأ الآن</span>
       </span>
-      <h1>طعم الصيف <em>الحقيقي</em></h1>
-      <p class="hero-sub">بطيخ أحمر وأصفر كويتي، وشمام وتين — يُقطف في أوجه نضجه، يُغسل ويُفرز بعناية، ويصلك في نفس يوم الطلب. هذا هو وعد مزمز.</p>
+      <h1><span data-i18n="hero.title1">طعم الصيف</span> <em data-i18n="hero.title2">الحقيقي</em></h1>
+      <p class="hero-sub" data-i18n="hero.subtitle">بطيخ أحمر وأصفر كويتي، وشمام وتين، وفواكه صيفية مختارة — يُقطف في أوجه نضجه، يُغسل ويُفرز بعناية، ويصلك في نفس يوم الطلب.</p>
       <div class="hero-cta">
-        <a href="#products" class="btn btn-accent">تسوّق المنتجات</a>
-        <a href="about.html" class="btn btn-ghost">تعرّف على قصتنا</a>
+        <a href="#products" class="btn btn-accent" data-i18n="hero.cta1">تسوّق المنتجات</a>
+        <a href="about.html" class="btn btn-ghost" data-i18n="hero.cta2">تعرّف على قصتنا</a>
       </div>
       <div class="hero-stats">
-        <div class="hero-stat"><b>+15</b><span>سنة خبرة في الأرض</span></div>
-        <div class="hero-stat"><b>100%</b><span>فرز يدوي دقيق</span></div>
-        <div class="hero-stat"><b>24 س</b><span>من القطف إلى بابك</span></div>
+        <div class="hero-stat"><b>+15</b><span data-i18n="hero.stat1">سنة خبرة في الأرض</span></div>
+        <div class="hero-stat"><b>100%</b><span data-i18n="hero.stat2">فرز يدوي دقيق</span></div>
+        <div class="hero-stat"><b>24 س</b><span data-i18n="hero.stat3">من القطف إلى بابك</span></div>
       </div>
     </div>
 
@@ -99,26 +103,26 @@
 <section class="section">
   <div class="container about-teaser">
     <div class="reveal">
-      <span class="eyebrow"><span class="seed-dot"></span>لماذا مزمز</span>
-      <h2 style="font-size:clamp(26px,3.6vw,36px); margin-bottom:16px;">من الحقل إلى مائدتك، دون وسيط ودون تنازل عن الجودة</h2>
+      <span class="eyebrow"><span class="seed-dot"></span><span data-i18n="teaser.eyebrow">لماذا مزمز</span></span>
+      <h2 style="font-size:clamp(26px,3.6vw,36px); margin-bottom:16px;" data-i18n="teaser.heading">من الحقل إلى مائدتك، دون وسيط ودون تنازل عن الجودة</h2>
       <p style="color:var(--text-soft); font-size:16px; line-height:1.85;">
-        نختار أرضًا وموسمًا وصنفًا بعناية، ونحصد كل ثمرة في لحظة نضجها المثالية. لا تبريد طويل، ولا تخزين مطوّل — فقط طزاجة تصل إليك كما هي.
+        <span data-i18n="teaser.body">نختار أرضًا وموسمًا وصنفًا بعناية، ونحصد كل ثمرة في لحظة نضجها المثالية. لا تبريد طويل، ولا تخزين مطوّل — فقط طزاجة تصل إليك كما هي.</span>
       </p>
       <div class="pill-badges">
         <span class="pill-badge">
           <svg viewBox="0 0 24 24" fill="none" stroke="#1f7a4d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          طازج يوميًا
+          <span data-i18n="teaser.badge1">طازج يوميًا</span>
         </span>
         <span class="pill-badge">
           <svg viewBox="0 0 24 24" fill="none" stroke="#c81f3f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 9.3 8 10 4.6-.7 8-5 8-10V6l-8-4Z"/></svg>
-          نظيف ومفروز يدويًا
+          <span data-i18n="teaser.badge2">نظيف ومفروز يدويًا</span>
         </span>
         <span class="pill-badge">
           <svg viewBox="0 0 24 24" fill="none" stroke="#dd9a00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
-          مختار بعناية
+          <span data-i18n="teaser.badge3">مختار بعناية</span>
         </span>
       </div>
-      <a href="about.html" class="btn btn-primary mt-lg" style="margin-top:32px;">اقرأ قصتنا كاملة</a>
+      <a href="about.html" class="btn btn-primary mt-lg" style="margin-top:32px;" data-i18n="teaser.cta">اقرأ قصتنا كاملة</a>
     </div>
 
     <div class="about-visual reveal">
@@ -140,13 +144,13 @@
 <section class="section section-alt" id="products">
   <div class="container">
     <div class="section-head center reveal">
-      <span class="eyebrow" style="justify-content:center;"><span class="seed-dot"></span>منتجاتنا</span>
-      <h2>ثلاث ثمار، معيار واحد للجودة</h2>
-      <p>كل صنف من إنتاج مزمز و وتين يمرّ بفرز دقيق قبل أن يصل إليك.</p>
+      <span class="eyebrow" style="justify-content:center;"><span class="seed-dot"></span><span data-i18n="products.eyebrow">منتجاتنا</span></span>
+      <h2 data-i18n="products.heading">ثلاث ثمار، معيار واحد للجودة</h2>
+      <p data-i18n="products.sub">كل صنف من إنتاج مزمز و وتين يمرّ بفرز دقيق قبل أن يصل إليك.</p>
     </div>
 
     <div class="product-search reveal">
-      <input type="text" id="productSearch" placeholder="ابحث عن منتج... (مثال: بطيخ، شمام)">
+      <input type="text" id="productSearch" placeholder="ابحث عن منتج... (مثال: بطيخ، شمام)" data-i18n-placeholder="products.search">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
     </div>
 
@@ -158,7 +162,7 @@
           <span class="product-tag red">مزمز</span>
           <span class="badge-flag bestseller">
             <svg viewBox="0 0 20 20" fill="currentColor" width="11" height="11"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
-            الأكثر مبيعًا
+            <span data-i18n="products.bestseller">الأكثر مبيعًا</span>
           </span>
           <img
             src="https://images.pexels.com/photos/25482631/pexels-photo-25482631.jpeg?auto=compress&cs=tinysrgb&w=640&h=525&fit=crop"
@@ -170,13 +174,13 @@
             alt="بطيخ أحمر أردني طازج من مزمز"
             loading="lazy" decoding="async">
         </div>
-        <h3>بطيخ أحمر كويتي</h3>
-        <p class="desc">حلاوة عالية وقشرة رفيعة، من مزارع الوفرة. مثالي لأيام الصيف الحارة وعصائر منعشة.</p>
+        <h3 data-i18n="p.red.name">بطيخ أحمر كويتي</h3>
+        <p class="desc" data-i18n="p.red.desc">حلاوة عالية وقشرة رفيعة، من مزارع الوفرة. مثالي لأيام الصيف الحارة وعصائر منعشة.</p>
         <div class="product-foot">
-          <span class="price"><span class="price-value" data-product-id="red-watermelon">1.75</span> <span>د.ك / كغ</span></span>
+          <span class="price"><span class="price-value" data-product-id="red-watermelon">1.75</span> <span data-i18n="products.perkg">د.ك / كغ</span></span>
           <button class="add-btn" data-id="red-watermelon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-            أضف إلى السلة
+            <span data-i18n="products.addbtn">أضف إلى السلة</span>
           </button>
         </div>
       </article>
@@ -194,13 +198,13 @@
             alt="بطيخ أصفر طازج من مزمز"
             loading="lazy" decoding="async">
         </div>
-        <h3>بطيخ أصفر</h3>
-        <p class="desc">نكهة أكثر عمقًا وحلاوة عسلية مميزة، ولون داخلي أصفر ذهبي يبهر ضيوفك على السفرة.</p>
+        <h3 data-i18n="p.yellow.name">بطيخ أصفر</h3>
+        <p class="desc" data-i18n="p.yellow.desc">نكهة أكثر عمقًا وحلاوة عسلية مميزة، ولون داخلي أصفر ذهبي يبهر ضيوفك على السفرة.</p>
         <div class="product-foot">
-          <span class="price"><span class="price-value" data-product-id="yellow-watermelon">2.00</span> <span>د.ك / كغ</span></span>
+          <span class="price"><span class="price-value" data-product-id="yellow-watermelon">2.00</span> <span data-i18n="products.perkg">د.ك / كغ</span></span>
           <button class="add-btn" data-id="yellow-watermelon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-            أضف إلى السلة
+            <span data-i18n="products.addbtn">أضف إلى السلة</span>
           </button>
         </div>
       </article>
@@ -211,7 +215,7 @@
           <span class="product-tag cantaloupe">وتين</span>
           <span class="badge-flag seasonal">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" width="11" height="11"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
-            موسمي
+            <span data-i18n="products.seasonal">موسمي</span>
           </span>
           <img
             src="https://cdn.pixabay.com/photo/2016/03/17/02/44/cantaloupe-1262199_1280.jpg"
@@ -222,13 +226,13 @@
             alt="شمام كويتي طازج من وتين"
             loading="lazy" decoding="async">
         </div>
-        <h3>شمام كويتي</h3>
-        <p class="desc">رائحة عطرية غنية وقوام طري حلو المذاق، يُقطف يدويًا في ذروة نضجه من مزارع وتين.</p>
+        <h3 data-i18n="p.shamam.name">شمام كويتي</h3>
+        <p class="desc" data-i18n="p.shamam.desc">رائحة عطرية غنية وقوام طري حلو المذاق، يُقطف يدويًا في ذروة نضجه من مزارع وتين.</p>
         <div class="product-foot">
-          <span class="price"><span class="price-value" data-product-id="shamam">1.38</span> <span>د.ك / كغ</span></span>
+          <span class="price"><span class="price-value" data-product-id="shamam">1.38</span> <span data-i18n="products.perkg">د.ك / كغ</span></span>
           <button class="add-btn" data-id="shamam">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-            أضف إلى السلة
+            <span data-i18n="products.addbtn">أضف إلى السلة</span>
           </button>
         </div>
       </article>
@@ -246,13 +250,13 @@
             alt="فراولة طازجة من مزمز"
             loading="lazy" decoding="async">
         </div>
-        <h3>فراولة</h3>
-        <p class="desc">حبات مختارة بعناية، حلوة ومنعشة، غنية بفيتامين C ومثالية كوجبة خفيفة صحية.</p>
+        <h3 data-i18n="p.strawberry.name">فراولة</h3>
+        <p class="desc" data-i18n="p.strawberry.desc">حبات مختارة بعناية، حلوة ومنعشة، غنية بفيتامين C ومثالية كوجبة خفيفة صحية.</p>
         <div class="product-foot">
-          <span class="price"><span class="price-value" data-product-id="strawberry">2.25</span> <span>د.ك / كغ</span></span>
+          <span class="price"><span class="price-value" data-product-id="strawberry">2.25</span> <span data-i18n="products.perkg">د.ك / كغ</span></span>
           <button class="add-btn" data-id="strawberry">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-            أضف إلى السلة
+            <span data-i18n="products.addbtn">أضف إلى السلة</span>
           </button>
         </div>
       </article>
@@ -270,13 +274,13 @@
             alt="مانجو طازج من مزمز"
             loading="lazy" decoding="async">
         </div>
-        <h3>مانجو</h3>
-        <p class="desc">قوام طري وحلاوة استوائية غنية، من أفضل أصناف المانجو المختارة لموسم الصيف.</p>
+        <h3 data-i18n="p.mango.name">مانجو</h3>
+        <p class="desc" data-i18n="p.mango.desc">قوام طري وحلاوة استوائية غنية، من أفضل أصناف المانجو المختارة لموسم الصيف.</p>
         <div class="product-foot">
-          <span class="price"><span class="price-value" data-product-id="mango">2.50</span> <span>د.ك / كغ</span></span>
+          <span class="price"><span class="price-value" data-product-id="mango">2.50</span> <span data-i18n="products.perkg">د.ك / كغ</span></span>
           <button class="add-btn" data-id="mango">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-            أضف إلى السلة
+            <span data-i18n="products.addbtn">أضف إلى السلة</span>
           </button>
         </div>
       </article>
@@ -294,19 +298,19 @@
             alt="عنب طازج من مزمز"
             loading="lazy" decoding="async">
         </div>
-        <h3>عنب</h3>
-        <p class="desc">عناقيد مقرمشة وحلوة، مغسولة ومفروزة بعناية، خيار مثالي لسفرة العائلة.</p>
+        <h3 data-i18n="p.grapes.name">عنب</h3>
+        <p class="desc" data-i18n="p.grapes.desc">عناقيد مقرمشة وحلوة، مغسولة ومفروزة بعناية، خيار مثالي لسفرة العائلة.</p>
         <div class="product-foot">
-          <span class="price"><span class="price-value" data-product-id="grapes">1.95</span> <span>د.ك / كغ</span></span>
+          <span class="price"><span class="price-value" data-product-id="grapes">1.95</span> <span data-i18n="products.perkg">د.ك / كغ</span></span>
           <button class="add-btn" data-id="grapes">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-            أضف إلى السلة
+            <span data-i18n="products.addbtn">أضف إلى السلة</span>
           </button>
         </div>
       </article>
 
     </div>
-    <p class="product-empty" id="productEmpty">ما لقينا منتجات مطابقة لبحثك. جرب كلمة أخرى.</p>
+    <p class="product-empty" id="productEmpty" data-i18n="products.empty">ما لقينا منتجات مطابقة لبحثك. جرب كلمة أخرى.</p>
   </div>
 </section>
 
@@ -314,30 +318,30 @@
 <section class="section">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow"><span class="seed-dot"></span>معايير مزمز</span>
-      <h2>ثلاثة معايير لا نتنازل عنها</h2>
+      <span class="eyebrow"><span class="seed-dot"></span><span data-i18n="features.eyebrow">معايير مزمز</span></span>
+      <h2 data-i18n="features.heading">ثلاثة معايير لا نتنازل عنها</h2>
     </div>
     <div class="feature-grid">
       <div class="feature-card reveal">
         <div class="feature-icon i-red">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.4 9.3 8 10 4.6-.7 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg>
         </div>
-        <h3>جودة مضمونة</h3>
-        <p>كل ثمرة تمرّ بفحص وزن ونضج قبل التعبئة، ونستبدل أي طلب لا يرقى إلى معاييرنا فورًا.</p>
+        <h3 data-i18n="features.1.title">جودة مضمونة</h3>
+        <p data-i18n="features.1.desc">كل ثمرة تمرّ بفحص وزن ونضج قبل التعبئة، ونستبدل أي طلب لا يرقى إلى معاييرنا فورًا.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon i-green">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5-4 8-8.5 8-13a8 8 0 1 0-16 0c0 4.5 3 9 8 13Z"/><circle cx="12" cy="9" r="2.6"/></svg>
         </div>
-        <h3>منتجات طازجة</h3>
-        <p>نقطف عند الطلب أو في نفس الصباح، دون تخزين مبرد طويل يفقد الثمار نكهتها الطبيعية.</p>
+        <h3 data-i18n="features.2.title">منتجات طازجة</h3>
+        <p data-i18n="features.2.desc">نقطف عند الطلب أو في نفس الصباح، دون تخزين مبرد طويل يفقد الثمار نكهتها الطبيعية.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon i-gold">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg>
         </div>
-        <h3>توصيل سريع</h3>
-        <p>توصيل في نفس اليوم داخل الكويت، وتغليف مبرّد يحافظ على الطزاجة حتى باب بيتك.</p>
+        <h3 data-i18n="features.3.title">توصيل سريع</h3>
+        <p data-i18n="features.3.desc">توصيل في نفس اليوم داخل الكويت، وتغليف مبرّد يحافظ على الطزاجة حتى باب بيتك.</p>
       </div>
     </div>
   </div>
@@ -347,8 +351,8 @@
 <section class="section section-alt">
   <div class="container">
     <div class="section-head center reveal">
-      <span class="eyebrow" style="justify-content:center;"><span class="seed-dot"></span>آراء العملاء</span>
-      <h2>ثقة عملائنا هي معيارنا الحقيقي</h2>
+      <span class="eyebrow" style="justify-content:center;"><span class="seed-dot"></span><span data-i18n="testimonials.eyebrow">آراء العملاء</span></span>
+      <h2 data-i18n="testimonials.heading">ثقة عملائنا هي معيارنا الحقيقي</h2>
     </div>
     <div class="testi-grid">
       <div class="testi-card reveal">
@@ -422,27 +426,27 @@
       <div class="stat-card">
         <div class="stat-icon">🍉</div>
         <div class="stat-number"><span class="stat-count" data-target="15">0</span><span>+</span></div>
-        <div class="stat-label">سنة خبرة</div>
+        <div class="stat-label" data-i18n="stats.1">سنة خبرة</div>
       </div>
       <div class="stat-card">
         <div class="stat-icon">😊</div>
         <div class="stat-number"><span class="stat-count" data-target="1200">0</span><span>+</span></div>
-        <div class="stat-label">عميل سعيد</div>
+        <div class="stat-label" data-i18n="stats.2">عميل سعيد</div>
       </div>
       <div class="stat-card">
         <div class="stat-icon">🚚</div>
         <div class="stat-number"><span class="stat-count" data-target="5000">0</span><span>+</span></div>
-        <div class="stat-label">طلب تم توصيله</div>
+        <div class="stat-label" data-i18n="stats.3">طلب تم توصيله</div>
       </div>
       <div class="stat-card">
         <div class="stat-icon">⭐</div>
         <div class="stat-number"><span class="stat-count" data-target="4.9" data-decimal="1">0</span></div>
-        <div class="stat-label">متوسط تقييم العملاء</div>
+        <div class="stat-label" data-i18n="stats.4">متوسط تقييم العملاء</div>
       </div>
     </div>
 
     <div class="text-center">
-      <button class="luck-trigger" id="luckTrigger" type="button">🎁 جرّب حظك</button>
+      <button class="luck-trigger" id="luckTrigger" type="button" data-i18n="luck.trigger">🎁 جرّب حظك</button>
     </div>
   </div>
 </section>
@@ -452,10 +456,10 @@
   <div class="container">
     <div class="cta-band reveal">
       <div>
-        <h2>جاهز لتجربة طعم الصيف الحقيقي؟</h2>
-        <p>اطلب الآن واستلم ثمارك الطازجة في نفس اليوم.</p>
+        <h2 data-i18n="cta.heading">جاهز لتجربة طعم الصيف الحقيقي؟</h2>
+        <p data-i18n="cta.sub">اطلب الآن واستلم ثمارك الطازجة في نفس اليوم.</p>
       </div>
-      <a href="#products" class="btn btn-primary">تسوّق الآن</a>
+      <a href="#products" class="btn btn-primary" data-i18n="cta.button">تسوّق الآن</a>
     </div>
   </div>
 </section>
@@ -476,16 +480,16 @@
         <p>بطيخ أحمر وأصفر كويتي، وشمام وتين. طازج، نظيف، ومختار بعناية ليصل إليك بأعلى جودة.</p>
       </div>
       <div class="footer-col">
-        <h4>روابط سريعة</h4>
+        <h4 data-i18n="footer.quicklinks">روابط سريعة</h4>
         <ul>
-          <li><a href="index.html">الرئيسية</a></li>
-          <li><a href="index.html#products">المنتجات</a></li>
-          <li><a href="about.html">من نحن</a></li>
-          <li><a href="contact.html">تواصل معنا</a></li>
+          <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+          <li><a href="index.html#products" data-i18n="nav.products">المنتجات</a></li>
+          <li><a href="about.html" data-i18n="nav.about">من نحن</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>تواصل</h4>
+        <h4 data-i18n="footer.contact">تواصل</h4>
         <ul>
           <li><a href="tel:+96550103368">+965 5010 3368</a></li>
           <li><a href="mailto:hello@mazamiz.kw">hello@mazamiz.kw</a></li>
@@ -493,14 +497,14 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>الإدارة</h4>
+        <h4 data-i18n="footer.admin">الإدارة</h4>
         <div class="sales-team">
-          <span class="sales-chip manager"><span class="dot" style="background:#0e7a6b;">أ</span>المدير: أحمد</span>
+          <span class="sales-chip manager"><span class="dot" style="background:#0e7a6b;">أ</span><span data-i18n="footer.manager">المدير: أحمد</span></span>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 مزمز. جميع الحقوق محفوظة.</span>
+      <span data-i18n="footer.rights">© 2026 مزمز. جميع الحقوق محفوظة.</span>
       <div class="socials">
         <a href="#" aria-label="انستغرام"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
         <a href="#" aria-label="واتساب"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21l1.6-4.8A8 8 0 1 1 8.8 19.4L3 21Z"/></svg></a>
@@ -514,7 +518,7 @@
 <div class="overlay" id="cartOverlay"></div>
 <aside class="cart-drawer" id="cartDrawer" aria-label="سلة المشتريات">
   <div class="cart-head">
-    <h3>سلة المشتريات (<span id="cartCountLabel">0</span>)</h3>
+    <h3><span data-i18n="cart.title">سلة المشتريات</span> (<span id="cartCountLabel">0</span>)</h3>
     <button class="icon-btn js-close-cart" aria-label="إغلاق السلة">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
@@ -525,7 +529,7 @@
       <span>الإجمالي</span>
       <b id="cartTotalValue">0.00 د.ك</b>
     </div>
-    <button class="btn btn-accent btn-block" id="checkoutBtn">إتمام الشراء</button>
+    <button class="btn btn-accent btn-block" id="checkoutBtn" data-i18n="cart.checkout">إتمام الشراء</button>
     <p class="form-note text-center" style="margin-top:10px;">هذه سلة تجريبية لأغراض العرض فقط.</p>
   </div>
 </aside>
@@ -540,8 +544,8 @@
   <button class="luck-close" id="luckClose" aria-label="إغلاق">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
   </button>
-  <h3>🎁 عجلة الحظ</h3>
-  <p class="luck-sub">دوّر العجلة وجرّب حظك — ميزة ترفيهية فقط</p>
+  <h3 data-i18n="luck.title">🎁 عجلة الحظ</h3>
+  <p class="luck-sub" data-i18n="luck.sub">دوّر العجلة وجرّب حظك — ميزة ترفيهية فقط</p>
 
   <div class="wheel-wrap">
     <div class="wheel-pointer"></div>
@@ -558,7 +562,7 @@
 
   <div class="luck-result" id="luckResult">
     <div class="prize" id="luckPrizeText"></div>
-    <p>مبروك! هذه نتيجة تجريبية للترفيه فقط.</p>
+    <p data-i18n="luck.resultNote">مبروك! هذه نتيجة تجريبية للترفيه فقط.</p>
   </div>
 </div>
 
@@ -566,6 +570,8 @@
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.06L2 22l5.1-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.63-1.14-4.34-3.8-4.47-3.98-.13-.18-1.07-1.42-1.07-2.71 0-1.29.68-1.93.92-2.19.24-.26.52-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.45.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.45-.13.16-.28.35-.4.47-.13.13-.27.28-.12.55.16.26.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.17 1.34.27.13.42.11.58-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.26.13.44.19.5.3.06.11.06.62-.16 1.24Z"/></svg>
   <span>راسلنا واتساب</span>
 </a>
+<script src="js/i18n.js"></script>
+<script src="js/account.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

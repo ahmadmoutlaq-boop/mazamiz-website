@@ -22,12 +22,16 @@
       مزمز
     </a>
     <nav class="nav-links" aria-label="التنقل الرئيسي">
-      <a href="index.html">الرئيسية</a>
-      <a href="index.html#products">المنتجات</a>
-      <a href="about.html">من نحن</a>
-      <a href="contact.html">تواصل معنا</a>
+      <a href="index.html" data-i18n="nav.home">الرئيسية</a>
+      <a href="index.html#products" data-i18n="nav.products">المنتجات</a>
+      <a href="about.html" data-i18n="nav.about">من نحن</a>
+      <a href="contact.html" data-i18n="nav.contact">تواصل معنا</a>
     </nav>
     <div class="nav-actions">
+      <div class="account-menu">
+        <button class="icon-btn" id="accountToggle" aria-label="الحساب"></button>
+        <div class="account-dropdown" id="accountDropdown"></div>
+      </div>
       <button class="icon-btn js-open-cart" aria-label="فتح سلة المشتريات">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h2l2.6 12.6a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.5L21 8H6"/></svg>
         <span class="cart-badge" id="cartBadge">0</span>
@@ -36,25 +40,25 @@
     </div>
   </div>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">الرئيسية</a>
-    <a href="index.html#products">المنتجات</a>
-    <a href="about.html">من نحن</a>
-    <a href="contact.html">تواصل معنا</a>
+    <a href="index.html" data-i18n="nav.home">الرئيسية</a>
+    <a href="index.html#products" data-i18n="nav.products">المنتجات</a>
+    <a href="about.html" data-i18n="nav.about">من نحن</a>
+    <a href="contact.html" data-i18n="nav.contact">تواصل معنا</a>
   </div>
 </header>
 
 <!-- ============ PAGE HERO ============ -->
 <section class="page-hero container">
-  <span class="eyebrow"><span class="seed-dot"></span>خطوة أخيرة</span>
-  <h1>إتمام الطلب</h1>
-  <p>راجع طلبك، عبّي بيانات التوصيل، وأكّد — الدفع نقدًا عند الاستلام.</p>
+  <span class="eyebrow"><span class="seed-dot"></span><span data-i18n="checkout.eyebrow">خطوة أخيرة</span></span>
+  <h1 data-i18n="checkout.heading">إتمام الطلب</h1>
+  <p data-i18n="checkout.sub">راجع طلبك، عبّي بيانات التوصيل، وأكّد — الدفع نقدًا عند الاستلام.</p>
 </section>
 
 <!-- ============ EMPTY CART STATE ============ -->
 <section class="section" id="emptyState" style="padding-top:0; display:none;">
   <div class="container text-center">
-    <p style="color:var(--text-soft); margin-bottom:20px;">سلتك فارغة حاليًا، ما في شي لإتمام طلبه.</p>
-    <a href="index.html#products" class="btn btn-accent">تصفّح المنتجات</a>
+    <p style="color:var(--text-soft); margin-bottom:20px;" data-i18n="checkout.emptyMsg">سلتك فارغة حاليًا، ما في شي لإتمام طلبه.</p>
+    <a href="index.html#products" class="btn btn-accent" data-i18n="checkout.browse">تصفّح المنتجات</a>
   </div>
 </section>
 
@@ -65,7 +69,7 @@
     <!-- ملخص الطلب -->
     <div class="reveal">
       <div class="contact-info-card" style="display:block;">
-        <h4 style="margin-bottom:16px; font-size:16px;">ملخص طلبك</h4>
+        <h4 style="margin-bottom:16px; font-size:16px;" data-i18n="checkout.summary">ملخص طلبك</h4>
         <div id="orderItems" style="display:flex; flex-direction:column; gap:14px;"></div>
 
         <div id="prizeSummaryBanner" class="prize-banner hidden" style="margin-top:18px;">
@@ -78,19 +82,19 @@
 
         <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:8px; font-size:14px;">
           <div style="display:flex; justify-content:space-between;">
-            <span style="color:var(--text-soft);">المجموع الفرعي</span>
+            <span style="color:var(--text-soft);" data-i18n="checkout.subtotal">المجموع الفرعي</span>
             <span id="sumSubtotal">0.00 د.ك</span>
           </div>
           <div style="display:flex; justify-content:space-between;" id="sumDiscountRow">
-            <span style="color:var(--text-soft);">الخصم</span>
+            <span style="color:var(--text-soft);" data-i18n="checkout.discount">الخصم</span>
             <span id="sumDiscount" style="color:var(--green);">0.00-</span>
           </div>
           <div style="display:flex; justify-content:space-between;">
-            <span style="color:var(--text-soft);">التوصيل</span>
+            <span style="color:var(--text-soft);" data-i18n="checkout.delivery">التوصيل</span>
             <span id="sumDelivery">1.000 د.ك</span>
           </div>
           <div style="display:flex; justify-content:space-between; margin-top:6px; padding-top:10px; border-top:1px solid var(--line);">
-            <b>الإجمالي النهائي</b>
+            <b data-i18n="checkout.grandtotal">الإجمالي النهائي</b>
             <b id="sumTotal" style="font-family:'Cairo',sans-serif; font-size:19px;">0.00 د.ك</b>
           </div>
         </div>
@@ -102,8 +106,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
         </div>
         <div>
-          <h4>طريقة الدفع</h4>
-          <p>حالياً الدفع متاح نقداً عند الاستلام فقط.</p>
+          <h4 data-i18n="checkout.paymentTitle">طريقة الدفع</h4>
+          <p data-i18n="checkout.paymentText">حالياً الدفع متاح نقداً عند الاستلام فقط.</p>
         </div>
       </div>
     </div>
@@ -112,63 +116,63 @@
     <div class="reveal">
       <form class="contact-form" id="checkoutForm">
         <div class="field">
-          <label for="custName">الاسم الكامل *</label>
+          <label for="custName" data-i18n="checkout.name">الاسم الكامل *</label>
           <input type="text" id="custName" name="custName" required>
         </div>
         <div class="field">
-          <label for="custPhone">رقم الهاتف *</label>
+          <label for="custPhone" data-i18n="checkout.phone">رقم الهاتف *</label>
           <input type="tel" id="custPhone" name="custPhone" placeholder="5XXXXXXX" required>
         </div>
 
         <div class="form-row">
           <div class="field">
-            <label for="area">المنطقة *</label>
+            <label for="area" data-i18n="checkout.area">المنطقة *</label>
             <input type="text" id="area" name="area" required>
           </div>
           <div class="field">
-            <label for="block">القطعة *</label>
+            <label for="block" data-i18n="checkout.block">القطعة *</label>
             <input type="text" id="block" name="block" required>
           </div>
         </div>
 
         <div class="form-row">
           <div class="field">
-            <label for="street">الشارع *</label>
+            <label for="street" data-i18n="checkout.street">الشارع *</label>
             <input type="text" id="street" name="street" required>
           </div>
           <div class="field">
-            <label for="avenue">الجادة</label>
+            <label for="avenue" data-i18n="checkout.avenue">الجادة</label>
             <input type="text" id="avenue" name="avenue">
           </div>
         </div>
 
         <div class="form-row">
           <div class="field">
-            <label for="building">المنزل / البناية *</label>
+            <label for="building" data-i18n="checkout.building">المنزل / البناية *</label>
             <input type="text" id="building" name="building" required>
           </div>
           <div class="field">
-            <label for="floorApt">الدور والشقة</label>
+            <label for="floorApt" data-i18n="checkout.floorapt">الدور والشقة</label>
             <input type="text" id="floorApt" name="floorApt" placeholder="مثال: دور 2، شقة 4">
           </div>
         </div>
 
         <div class="field">
-          <label for="notes">ملاحظات إضافية</label>
+          <label for="notes" data-i18n="checkout.notes">ملاحظات إضافية</label>
           <textarea id="notes" name="notes" rows="3" placeholder="أي تفاصيل إضافية تساعد مندوب التوصيل..."></textarea>
         </div>
 
-        <button type="submit" class="btn btn-accent btn-block" id="confirmOrderBtn">تأكيد الطلب</button>
-        <p class="form-note text-center">الحقول المعلّمة بـ * إلزامية.</p>
+        <button type="submit" class="btn btn-accent btn-block" id="confirmOrderBtn" data-i18n="checkout.confirm">تأكيد الطلب</button>
+        <p class="form-note text-center" data-i18n="checkout.required">الحقول المعلّمة بـ * إلزامية.</p>
       </form>
 
       <!-- شاشة النجاح تظهر بدل النموذج بعد إرسال الطلب بنجاح -->
       <div class="contact-form hidden" id="successPanel" style="text-align:center;">
         <div style="font-size:44px; margin-bottom:10px;">✅</div>
-        <h3 style="font-size:20px; margin-bottom:10px;">تم استلام طلبك بنجاح!</h3>
-        <p style="color:var(--text-soft); font-size:14.5px; margin-bottom:6px;">رقم طلبك: <b id="successOrderNumber" style="color:var(--text);"></b></p>
-        <p style="color:var(--text-soft); font-size:14.5px; margin-bottom:24px;">سيتواصل معك فريق مزمز قريبًا لتأكيد موعد التوصيل. الدفع نقدًا عند الاستلام.</p>
-        <a href="index.html" class="btn btn-primary">العودة للرئيسية</a>
+        <h3 style="font-size:20px; margin-bottom:10px;" data-i18n="checkout.successTitle">تم استلام طلبك بنجاح!</h3>
+        <p style="color:var(--text-soft); font-size:14.5px; margin-bottom:6px;"><span data-i18n="checkout.successNum">رقم طلبك:</span> <b id="successOrderNumber" style="color:var(--text);"></b></p>
+        <p style="color:var(--text-soft); font-size:14.5px; margin-bottom:24px;" data-i18n="checkout.successNote">سيتواصل معك فريق مزمز قريبًا لتأكيد موعد التوصيل. الدفع نقدًا عند الاستلام.</p>
+        <a href="index.html" class="btn btn-primary" data-i18n="checkout.backHome">العودة للرئيسية</a>
       </div>
     </div>
 
@@ -188,19 +192,19 @@
           </svg>
           مزمز
         </a>
-        <p>بطيخ أحمر وأصفر كويتي، وشمام وتين، وفواكه صيفية مختارة. طازج، نظيف، ومختار بعناية.</p>
+        <p data-i18n="footer.about">بطيخ أحمر وأصفر كويتي، وشمام وتين، وفواكه صيفية مختارة. طازج، نظيف، ومختار بعناية.</p>
       </div>
       <div class="footer-col">
-        <h4>روابط سريعة</h4>
+        <h4 data-i18n="footer.quicklinks">روابط سريعة</h4>
         <ul>
-          <li><a href="index.html">الرئيسية</a></li>
-          <li><a href="index.html#products">المنتجات</a></li>
-          <li><a href="about.html">من نحن</a></li>
-          <li><a href="contact.html">تواصل معنا</a></li>
+          <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+          <li><a href="index.html#products" data-i18n="nav.products">المنتجات</a></li>
+          <li><a href="about.html" data-i18n="nav.about">من نحن</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>تواصل</h4>
+        <h4 data-i18n="footer.contact">تواصل</h4>
         <ul>
           <li><a href="tel:+96550103368">+965 5010 3368</a></li>
           <li><a href="mailto:hello@mazamiz.kw">hello@mazamiz.kw</a></li>
@@ -208,14 +212,14 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>الإدارة</h4>
+        <h4 data-i18n="footer.admin">الإدارة</h4>
         <div class="sales-team">
-          <span class="sales-chip manager"><span class="dot" style="background:#0e7a6b;">أ</span>المدير: أحمد</span>
+          <span class="sales-chip manager"><span class="dot" style="background:#0e7a6b;">أ</span><span data-i18n="footer.manager">المدير: أحمد</span></span>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 مزمز. جميع الحقوق محفوظة.</span>
+      <span data-i18n="footer.rights">© 2026 مزمز. جميع الحقوق محفوظة.</span>
     </div>
   </div>
 </footer>
@@ -223,18 +227,20 @@
 <div class="overlay" id="cartOverlay"></div>
 <aside class="cart-drawer" id="cartDrawer" aria-label="سلة المشتريات">
   <div class="cart-head">
-    <h3>سلة المشتريات (<span id="cartCountLabel">0</span>)</h3>
+    <h3><span data-i18n="cart.title">سلة المشتريات</span> (<span id="cartCountLabel">0</span>)</h3>
     <button class="icon-btn js-close-cart" aria-label="إغلاق السلة">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
   </div>
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-foot">
-    <div class="cart-total"><span>الإجمالي</span><b id="cartTotalValue">0.00 د.ك</b></div>
-    <button class="btn btn-accent btn-block" id="checkoutBtn">إتمام الشراء</button>
+    <div class="cart-total"><span data-i18n="cart.total">الإجمالي</span><b id="cartTotalValue">0.00 د.ك</b></div>
+    <button class="btn btn-accent btn-block" id="checkoutBtn" data-i18n="cart.checkout">إتمام الشراء</button>
   </div>
 </aside>
 
+<script src="js/i18n.js"></script>
+<script src="js/account.js"></script>
 <script src="js/main.js"></script>
 <script src="js/checkout.js"></script>
 </body>

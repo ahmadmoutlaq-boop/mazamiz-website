@@ -25,12 +25,16 @@
       مزمز
     </a>
     <nav class="nav-links" aria-label="التنقل الرئيسي">
-      <a href="index.html">الرئيسية</a>
-      <a href="index.html#products">المنتجات</a>
-      <a href="about.html" class="active">من نحن</a>
-      <a href="contact.html">تواصل معنا</a>
+      <a href="index.html" data-i18n="nav.home">الرئيسية</a>
+      <a href="index.html#products" data-i18n="nav.products">المنتجات</a>
+      <a href="about.html" class="active" data-i18n="nav.about">من نحن</a>
+      <a href="contact.html" data-i18n="nav.contact">تواصل معنا</a>
     </nav>
     <div class="nav-actions">
+      <div class="account-menu">
+        <button class="icon-btn" id="accountToggle" aria-label="الحساب"></button>
+        <div class="account-dropdown" id="accountDropdown"></div>
+      </div>
       <button class="icon-btn js-open-cart" aria-label="فتح سلة المشتريات">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h2l2.6 12.6a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.5L21 8H6"/></svg>
         <span class="cart-badge" id="cartBadge">0</span>
@@ -39,28 +43,28 @@
     </div>
   </div>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">الرئيسية</a>
-    <a href="index.html#products">المنتجات</a>
-    <a href="about.html">من نحن</a>
-    <a href="contact.html">تواصل معنا</a>
+    <a href="index.html" data-i18n="nav.home">الرئيسية</a>
+    <a href="index.html#products" data-i18n="nav.products">المنتجات</a>
+    <a href="about.html" data-i18n="nav.about">من نحن</a>
+    <a href="contact.html" data-i18n="nav.contact">تواصل معنا</a>
   </div>
 </header>
 
 <!-- ============ PAGE HERO ============ -->
 <section class="page-hero container">
-  <span class="eyebrow"><span class="seed-dot"></span>قصتنا</span>
-  <h1>زراعة أصيلة، بمعايير حديثة</h1>
-  <p>مزمز بدأت من أرض كويتية بسيطة، وتحوّلت اليوم إلى علامة موثوقة لأجود أنواع البطيخ والشمام — دون أن نتنازل عن قيمة واحدة اعتقدنا بها منذ البداية: الطزاجة الحقيقية.</p>
+  <span class="eyebrow"><span class="seed-dot"></span><span data-i18n="about.eyebrow">قصتنا</span></span>
+  <h1 data-i18n="about.heading">زراعة أصيلة، بمعايير حديثة</h1>
+  <p data-i18n="about.sub">مزمز بدأت من أرض كويتية بسيطة، وتحوّلت اليوم إلى علامة موثوقة لأجود أنواع البطيخ والشمام — دون أن نتنازل عن قيمة واحدة اعتقدنا بها منذ البداية: الطزاجة الحقيقية.</p>
 </section>
 
 <!-- ============ STORY ============ -->
 <section class="section">
   <div class="container story-grid">
     <div class="reveal">
-      <span class="eyebrow"><span class="seed-dot"></span>البداية</span>
-      <h2 style="font-size:clamp(24px,3.2vw,32px); margin-bottom:18px;">من الوفرة إلى بيتك</h2>
-      <p>بدأت مزمز كمزرعة عائلية صغيرة في الوفرة، حيث التربة الخصبة والشمس الدافئة تمنح البطيخ حلاوته المميزة. مع مرور السنوات، توسّعنا لنشمل صنف البطيخ الأصفر، وتعاونّا مع مزارعي وتين لتقديم شمام كويتي أصيل.</p>
-      <p>اليوم، ما زلنا نتعامل مع كل ثمرة كما لو كانت الأولى: نفحصها، نغسلها، ونفرزها يدويًا قبل أن تصل إليك. لأن الجودة عندنا ليست شعارًا، بل عادة يومية.</p>
+      <span class="eyebrow"><span class="seed-dot"></span><span data-i18n="about.storyEyebrow">البداية</span></span>
+      <h2 style="font-size:clamp(24px,3.2vw,32px); margin-bottom:18px;" data-i18n="about.storyHeading">من الوفرة إلى بيتك</h2>
+      <p data-i18n="about.story1">بدأت مزمز كمزرعة عائلية صغيرة في الوفرة، حيث التربة الخصبة والشمس الدافئة تمنح البطيخ حلاوته المميزة. مع مرور السنوات، توسّعنا لنشمل صنف البطيخ الأصفر، وتعاونّا مع مزارعي وتين لتقديم شمام كويتي أصيل.</p>
+      <p data-i18n="about.story2">اليوم، ما زلنا نتعامل مع كل ثمرة كما لو كانت الأولى: نفحصها، نغسلها، ونفرزها يدويًا قبل أن تصل إليك. لأن الجودة عندنا ليست شعارًا، بل عادة يومية.</p>
     </div>
     <div class="story-visual reveal" aria-hidden="true">
       <svg viewBox="0 0 220 220" fill="none">
@@ -81,29 +85,29 @@
 <section class="section section-alt">
   <div class="container">
     <div class="section-head center reveal">
-      <span class="eyebrow" style="justify-content:center;"><span class="seed-dot"></span>قيمنا</span>
-      <h2>ما يوجّه كل قرار نتخذه</h2>
+      <span class="eyebrow" style="justify-content:center;"><span class="seed-dot"></span><span data-i18n="about.valuesEyebrow">قيمنا</span></span>
+      <h2 data-i18n="about.valuesHeading">ما يوجّه كل قرار نتخذه</h2>
     </div>
     <div class="values-grid">
       <div class="value-card reveal">
-        <div class="num">النقاء</div>
-        <h3>بدون إضافات</h3>
-        <p>ثمار طبيعية 100%، تنمو بلا اختصارات وتصل إليك كما خلقها الله.</p>
+        <div class="num" data-i18n="about.v1t">النقاء</div>
+        <h3 data-i18n="about.v1h">بدون إضافات</h3>
+        <p data-i18n="about.v1d">ثمار طبيعية 100%، تنمو بلا اختصارات وتصل إليك كما خلقها الله.</p>
       </div>
       <div class="value-card reveal">
-        <div class="num">الدقة</div>
-        <h3>فرز صارم</h3>
-        <p>كل ثمرة تُفحص وزنًا ونضجًا قبل أن تحمل اسم مزمز أو وتين.</p>
+        <div class="num" data-i18n="about.v2t">الدقة</div>
+        <h3 data-i18n="about.v2h">فرز صارم</h3>
+        <p data-i18n="about.v2d">كل ثمرة تُفحص وزنًا ونضجًا قبل أن تحمل اسم مزمز أو وتين.</p>
       </div>
       <div class="value-card reveal">
-        <div class="num">السرعة</div>
-        <h3>من الحقل لبابك</h3>
-        <p>نقلل زمن التخزين إلى أدنى حد، لتصلك الثمرة في أوج طزاجتها.</p>
+        <div class="num" data-i18n="about.v3t">السرعة</div>
+        <h3 data-i18n="about.v3h">من الحقل لبابك</h3>
+        <p data-i18n="about.v3d">نقلل زمن التخزين إلى أدنى حد، لتصلك الثمرة في أوج طزاجتها.</p>
       </div>
       <div class="value-card reveal">
-        <div class="num">الثقة</div>
-        <h3>علاقة تدوم</h3>
-        <p>نبني علاقتنا مع عملائنا على الصدق في الوزن والسعر والجودة.</p>
+        <div class="num" data-i18n="about.v4t">الثقة</div>
+        <h3 data-i18n="about.v4h">علاقة تدوم</h3>
+        <p data-i18n="about.v4d">نبني علاقتنا مع عملائنا على الصدق في الوزن والسعر والجودة.</p>
       </div>
     </div>
   </div>
@@ -113,36 +117,36 @@
 <section class="section">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow"><span class="seed-dot"></span>مسيرتنا</span>
-      <h2>محطات في رحلة مزمز</h2>
+      <span class="eyebrow"><span class="seed-dot"></span><span data-i18n="about.timelineEyebrow">مسيرتنا</span></span>
+      <h2 data-i18n="about.timelineHeading">محطات في رحلة مزمز</h2>
     </div>
     <div class="timeline">
       <div class="timeline-item reveal">
-        <div class="year">البداية</div>
+        <div class="year" data-i18n="about.t1y">البداية</div>
         <div>
-          <h4>مزرعة عائلية في الوفرة</h4>
-          <p>انطلقت الفكرة من قطعة أرض صغيرة وشغف عائلي بزراعة البطيخ الأحمر بجودة عالية.</p>
+          <h4 data-i18n="about.t1h">مزرعة عائلية في الوفرة</h4>
+          <p data-i18n="about.t1d">انطلقت الفكرة من قطعة أرض صغيرة وشغف عائلي بزراعة البطيخ الأحمر بجودة عالية.</p>
         </div>
       </div>
       <div class="timeline-item reveal">
-        <div class="year">التوسع</div>
+        <div class="year" data-i18n="about.t2y">التوسع</div>
         <div>
-          <h4>إضافة البطيخ الأصفر</h4>
-          <p>استجابةً لطلب متزايد على النكهات المميزة، أدخلنا صنف البطيخ الأصفر إلى إنتاجنا.</p>
+          <h4 data-i18n="about.t2h">إضافة البطيخ الأصفر</h4>
+          <p data-i18n="about.t2d">استجابةً لطلب متزايد على النكهات المميزة، أدخلنا صنف البطيخ الأصفر إلى إنتاجنا.</p>
         </div>
       </div>
       <div class="timeline-item reveal">
-        <div class="year">الشراكة</div>
+        <div class="year" data-i18n="about.t3y">الشراكة</div>
         <div>
-          <h4>ولادة علامة وتين</h4>
-          <p>تعاوننا مع مزارعي شمام موثوقين لإطلاق علامة وتين المتخصصة بالشمام الكويتي الأصيل.</p>
+          <h4 data-i18n="about.t3h">ولادة علامة وتين</h4>
+          <p data-i18n="about.t3d">تعاوننا مع مزارعي شمام موثوقين لإطلاق علامة وتين المتخصصة بالشمام الكويتي الأصيل.</p>
         </div>
       </div>
       <div class="timeline-item reveal">
-        <div class="year">اليوم</div>
+        <div class="year" data-i18n="about.t4y">اليوم</div>
         <div>
-          <h4>مزمز الرقمية</h4>
-          <p>نقلنا تجربة الطزاجة إلى الإنترنت، ليصلك أفضل ما لدينا بضغطة زر.</p>
+          <h4 data-i18n="about.t4h">مزمز الرقمية</h4>
+          <p data-i18n="about.t4d">نقلنا تجربة الطزاجة إلى الإنترنت، ليصلك أفضل ما لدينا بضغطة زر.</p>
         </div>
       </div>
     </div>
@@ -154,10 +158,10 @@
   <div class="container">
     <div class="cta-band reveal">
       <div>
-        <h2>تعرّفت علينا، الآن جرّب ثمارنا</h2>
-        <p>تصفّح منتجات مزمز و وتين واطلب طزاجتك اليوم.</p>
+        <h2 data-i18n="about.ctaHeading">تعرّفت علينا، الآن جرّب ثمارنا</h2>
+        <p data-i18n="about.ctaSub">تصفّح منتجات مزمز و وتين واطلب طزاجتك اليوم.</p>
       </div>
-      <a href="index.html#products" class="btn btn-primary">تسوّق الآن</a>
+      <a href="index.html#products" class="btn btn-primary" data-i18n="cta.button">تسوّق الآن</a>
     </div>
   </div>
 </section>
@@ -178,16 +182,16 @@
         <p>بطيخ أحمر وأصفر كويتي، وشمام وتين. طازج، نظيف، ومختار بعناية ليصل إليك بأعلى جودة.</p>
       </div>
       <div class="footer-col">
-        <h4>روابط سريعة</h4>
+        <h4 data-i18n="footer.quicklinks">روابط سريعة</h4>
         <ul>
-          <li><a href="index.html">الرئيسية</a></li>
-          <li><a href="index.html#products">المنتجات</a></li>
-          <li><a href="about.html">من نحن</a></li>
-          <li><a href="contact.html">تواصل معنا</a></li>
+          <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+          <li><a href="index.html#products" data-i18n="nav.products">المنتجات</a></li>
+          <li><a href="about.html" data-i18n="nav.about">من نحن</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>تواصل</h4>
+        <h4 data-i18n="footer.contact">تواصل</h4>
         <ul>
           <li><a href="tel:+96550103368">+965 5010 3368</a></li>
           <li><a href="mailto:hello@mazamiz.kw">hello@mazamiz.kw</a></li>
@@ -195,14 +199,14 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>الإدارة</h4>
+        <h4 data-i18n="footer.admin">الإدارة</h4>
         <div class="sales-team">
-          <span class="sales-chip manager"><span class="dot" style="background:#0e7a6b;">أ</span>المدير: أحمد</span>
+          <span class="sales-chip manager"><span class="dot" style="background:#0e7a6b;">أ</span><span data-i18n="footer.manager">المدير: أحمد</span></span>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 مزمز. جميع الحقوق محفوظة.</span>
+      <span data-i18n="footer.rights">© 2026 مزمز. جميع الحقوق محفوظة.</span>
       <div class="socials">
         <a href="#" aria-label="انستغرام"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
         <a href="#" aria-label="واتساب"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21l1.6-4.8A8 8 0 1 1 8.8 19.4L3 21Z"/></svg></a>
@@ -215,15 +219,15 @@
 <div class="overlay" id="cartOverlay"></div>
 <aside class="cart-drawer" id="cartDrawer" aria-label="سلة المشتريات">
   <div class="cart-head">
-    <h3>سلة المشتريات (<span id="cartCountLabel">0</span>)</h3>
+    <h3><span data-i18n="cart.title">سلة المشتريات</span> (<span id="cartCountLabel">0</span>)</h3>
     <button class="icon-btn js-close-cart" aria-label="إغلاق السلة">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
   </div>
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-foot">
-    <div class="cart-total"><span>الإجمالي</span><b id="cartTotalValue">0.00 د.ك</b></div>
-    <button class="btn btn-accent btn-block" id="checkoutBtn">إتمام الشراء</button>
+    <div class="cart-total"><span data-i18n="cart.total">الإجمالي</span><b id="cartTotalValue">0.00 د.ك</b></div>
+    <button class="btn btn-accent btn-block" id="checkoutBtn" data-i18n="cart.checkout">إتمام الشراء</button>
     <p class="form-note text-center" style="margin-top:10px;">هذه سلة تجريبية لأغراض العرض فقط.</p>
   </div>
 </aside>
@@ -232,6 +236,8 @@
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.06L2 22l5.1-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.63-1.14-4.34-3.8-4.47-3.98-.13-.18-1.07-1.42-1.07-2.71 0-1.29.68-1.93.92-2.19.24-.26.52-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.45.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.45-.13.16-.28.35-.4.47-.13.13-.27.28-.12.55.16.26.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.17 1.34.27.13.42.11.58-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.26.13.44.19.5.3.06.11.06.62-.16 1.24Z"/></svg>
   <span>راسلنا واتساب</span>
 </a>
+<script src="js/i18n.js"></script>
+<script src="js/account.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
