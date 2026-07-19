@@ -26,7 +26,7 @@ function renderOrderSummary(){
     const lineTotal = p.price * qty;
     return `
       <div style="display:flex; justify-content:space-between; gap:10px; font-size:13.5px;">
-        <span>${p.name} <span style="color:var(--text-faint);">× ${qty}</span></span>
+        <span>${getProductName(id)} <span style="color:var(--text-faint);">× ${qty}</span></span>
         <span>${fmt(lineTotal)} د.ك</span>
       </div>`;
   }).join('');
@@ -37,7 +37,9 @@ function renderOrderSummary(){
   const total = Math.max(0, subtotal - discount + delivery);
 
   document.getElementById('sumSubtotal').textContent = `${fmt(subtotal)} د.ك`;
-  document.getElementById('sumDelivery').textContent = delivery === 0 ? 'مجاني 🎉' : `${fmt(delivery)} د.ك`;
+  const lang = (window.MazamizI18n && window.MazamizI18n.getLang()) || 'ar';
+  const freeLabel = window.MazamizI18n ? window.MazamizI18n.dict[lang]['checkout.free'] : 'مجاني';
+  document.getElementById('sumDelivery').textContent = delivery === 0 ? `${freeLabel} 🎉` : `${fmt(delivery)} د.ك`;
   document.getElementById('sumTotal').textContent = `${fmt(total)} د.ك`;
 
   const discountRow = document.getElementById('sumDiscountRow');
@@ -80,6 +82,9 @@ function buildOrderPayload(){
     prizeLabel: prize ? prize.label : null,
     deliveryFee: delivery,
     total: Math.round(Math.max(0, subtotal - discount + delivery) * 1000) / 1000,
+    // إذا الزائر مسجّل دخول بحسابه (نظام محلي شكلي، انظر js/account.js)
+    // نربط الطلب باسمه حتى يظهر لاحقًا بصفحة "طلباتي" — وإلا يبقى فاضي.
+    username: (typeof getSession === 'function' && getSession()) || null,
     customer: {
       name: document.getElementById('custName').value.trim(),
       phone: document.getElementById('custPhone').value.trim(),

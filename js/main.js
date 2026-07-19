@@ -10,7 +10,8 @@ const PRODUCTS = {
     price: 1.75,
     unit: 'للكيلوغرام',
     color: '#c81f3f',
-    thumb: 'red'
+    thumb: 'red',
+    i18nKey: 'p.red'
   },
   'yellow-watermelon': {
     name: 'بطيخ أصفر',
@@ -18,7 +19,8 @@ const PRODUCTS = {
     price: 2.00,
     unit: 'للكيلوغرام',
     color: '#dd9a00',
-    thumb: 'yellow'
+    thumb: 'yellow',
+    i18nKey: 'p.yellow'
   },
   'shamam': {
     name: 'شمام كويتي',
@@ -26,7 +28,8 @@ const PRODUCTS = {
     price: 1.38,
     unit: 'للكيلوغرام',
     color: '#d67c26',
-    thumb: 'cantaloupe'
+    thumb: 'cantaloupe',
+    i18nKey: 'p.shamam'
   },
   'strawberry': {
     name: 'فراولة',
@@ -34,7 +37,8 @@ const PRODUCTS = {
     price: 2.25,
     unit: 'للكيلوغرام',
     color: '#c81f3f',
-    thumb: 'strawberry'
+    thumb: 'strawberry',
+    i18nKey: 'p.strawberry'
   },
   'mango': {
     name: 'مانجو',
@@ -42,7 +46,8 @@ const PRODUCTS = {
     price: 2.50,
     unit: 'للكيلوغرام',
     color: '#e8a400',
-    thumb: 'mango'
+    thumb: 'mango',
+    i18nKey: 'p.mango'
   },
   'grapes': {
     name: 'عنب',
@@ -50,7 +55,8 @@ const PRODUCTS = {
     price: 1.95,
     unit: 'للكيلوغرام',
     color: '#6b3fa0',
-    thumb: 'grapes'
+    thumb: 'grapes',
+    i18nKey: 'p.grapes'
   }
 };
 
@@ -63,6 +69,21 @@ const THUMBS = {
   mango: `<svg viewBox="0 0 64 64" fill="none"><path d="M14 30c0-14 12-18 22-14 10 4 16 14 12 24-4 10-16 16-24 12-10-5-12-14-10-22Z" fill="#f5c343"/><path d="M30 16c4-6 10-8 14-6" stroke="#1f7a4d" stroke-width="3" stroke-linecap="round"/></svg>`,
   grapes: `<svg viewBox="0 0 64 64" fill="none"><g fill="#6b3fa0"><circle cx="24" cy="26" r="8"/><circle cx="36" cy="26" r="8"/><circle cx="18" cy="38" r="8"/><circle cx="30" cy="38" r="8"/><circle cx="42" cy="38" r="8"/><circle cx="24" cy="50" r="8"/><circle cx="36" cy="50" r="8"/></g><path d="M30 12c2-4 6-6 10-5" stroke="#1f7a4d" stroke-width="3" stroke-linecap="round"/></svg>`
 };
+
+// Returns the product's display name in whichever language is
+// currently active (falls back to the Arabic name baked into
+// PRODUCTS if i18n.js hasn't loaded on this page for some reason).
+function getProductName(id){
+  const p = PRODUCTS[id];
+  if(!p) return '';
+  if(window.MazamizI18n && p.i18nKey){
+    const lang = window.MazamizI18n.getLang();
+    const dict = window.MazamizI18n.dict[lang];
+    const key = p.i18nKey + '.name';
+    if(dict[key] !== undefined) return dict[key];
+  }
+  return p.name;
+}
 
 /* -------- State -------- */
 let cart = {}; // { productId: qty }
@@ -338,7 +359,7 @@ function renderCart(){
       <div class="cart-item" data-id="${id}">
         <div class="thumb product-media ${p.thumb}" style="border-radius:14px; aspect-ratio:auto;">${THUMBS[p.thumb]}</div>
         <div class="info">
-          <b>${p.name} <small style="color:var(--text-faint); font-weight:500;">— ${p.brand}</small></b>
+          <b>${getProductName(id)} <small style="color:var(--text-faint); font-weight:500;">— ${p.brand}</small></b>
           <span>${fmt(p.price)} د.ك ${p.unit}</span>
           <div class="qty-control">
             <button class="js-dec" aria-label="إنقاص الكمية">−</button>

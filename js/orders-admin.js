@@ -25,9 +25,11 @@ let sortNewestFirst = true;
 let autoRefreshTimer = null;
 
 const STATUS_CLASS = {
-  'جديد': 'new',
+  'قيد المراجعة': 'new',
+  'تم تأكيد الطلب': 'confirmed',
   'جاري التجهيز': 'progress',
-  'تم التوصيل': 'done'
+  'خرج للتوصيل': 'out',
+  'تم التسليم': 'done'
 };
 
 function fmtMoney(n){
@@ -80,9 +82,11 @@ function renderOrders(){
           <div class="meta">${fmtDate(o.createdAt)}</div>
         </div>
         <select class="status-select ${STATUS_CLASS[o.status] || ''}" data-id="${o.id}">
-          <option ${o.status === 'جديد' ? 'selected' : ''}>جديد</option>
+          <option ${o.status === 'قيد المراجعة' ? 'selected' : ''}>قيد المراجعة</option>
+          <option ${o.status === 'تم تأكيد الطلب' ? 'selected' : ''}>تم تأكيد الطلب</option>
           <option ${o.status === 'جاري التجهيز' ? 'selected' : ''}>جاري التجهيز</option>
-          <option ${o.status === 'تم التوصيل' ? 'selected' : ''}>تم التوصيل</option>
+          <option ${o.status === 'خرج للتوصيل' ? 'selected' : ''}>خرج للتوصيل</option>
+          <option ${o.status === 'تم التسليم' ? 'selected' : ''}>تم التسليم</option>
         </select>
       </div>
 
